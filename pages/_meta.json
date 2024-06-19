@@ -1,0 +1,16 @@
+{
+    "*": {
+        "theme": {
+            "breadcrumb": false
+        }
+    },
+    "index": {
+        "title": "Introduction"
+    },
+    "somepage with sub page": {
+        "title": "",
+        "theme": {
+            "breadcrumb": true
+        }
+    }
+}
