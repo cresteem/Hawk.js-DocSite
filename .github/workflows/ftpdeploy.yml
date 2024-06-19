@@ -65,6 +65,6 @@ jobs:
           username: ${{ secrets.FTP_UNAME }}
           password: ${{ secrets.FTP_PASS }}
           protocol: ${{ secrets.FTP_PROTOCOL }}
-          local-dir: ./opensource/
-          server-dir: opensource/
+          local-dir: ./opensource/hawk-js/
+          server-dir: opensource/hawk-js/
           security: strict
