@@ -6,7 +6,7 @@ const withNextra = require("nextra")({
 
 console.log(
   "\n###################################################\n",
-  "Localhost: http://localhost:3000/opensource/hawk-js",
+  "Localhost: http://localhost:3000/opensource/enhancing-seo-with-hawk-js",
   "\n####################################################\n"
 );
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
   images: {
     unoptimized: true,
   },
-  basePath: "/opensource/hawk-js",
+  basePath: "/opensource/enhancing-seo-with-hawk-js",
   output: "export",
-  distDir: "opensource/hawk-js",
+  distDir: "opensource/enhancing-seo-with-hawk-js",
 };

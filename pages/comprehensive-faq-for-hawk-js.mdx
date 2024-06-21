@@ -1,0 +1,134 @@
+---
+title: "Exploring Hawk JS: Frequently Asked Questions"
+description: "Get answers to the most frequently asked questions about Hawk JS, covering topics such as installation, configuration, supported search engines, sitemap generation, and more. This FAQ guide will enhance your understanding and effective usage of this powerful SEO tool."
+thumbnailUrl: https://cresteem.com/opensource/Hawk JS/thumbnail.png
+---
+
+# Frequently Asked Questions
+
+<details>
+    <summary>What is Hawk JS?</summary>
+    <p>Hawk JS is a tool for generating and deploying **sitemaps** and **update content link** to search engines for websites. It supports automatic **submission** to search engines such as Google, Bing, Yahoo, Yandex, and others, ensuring your website content is indexed quickly and efficiently.</p>
+</details>
+
+<details>
+    <summary>How do I install Hawk JS?</summary>
+    <p>You can install Hawk JS using npm or yarn. Run <code>`npm install @cresteem/hawk-js`</code> or <code>`yarn add @cresteem/hawk-js`</code> in your project directory.</p>
+</details>
+
+<details>
+    <summary>How do I configure Hawk JS for my project?</summary>
+    <p>You can configure Hawk JS by creating a <code>`hawk.config.json`</code> file in the root directory of your project. This file includes settings such as lookup patterns, ignore patterns, timezone, domain name, sitemap path, robot path, and secret file.</p>
+</details>
+
+<details>
+    <summary>Which search engines are supported by Hawk JS?</summary>
+    <p>Hawk JS supports submission to multiple search engines, including **Google**, **Bing**, **Yahoo**, **Yandex**, and others that support the IndexNow protocol.</p>
+</details>
+
+<details>
+    <summary>What are lookup and ignore patterns in Hawk JS?</summary>
+    <p>Lookup patterns specify the files to be included when generating the sitemap, while ignore patterns specify the files to be excluded. These patterns help customize which parts of your website are indexed.</p>
+</details>
+
+<details>
+    <summary>When should I use the Google Indexing API strategy?</summary>
+    <p>The Google Indexing API strategy is ideal for sites with frequently changing content, such as **job postings** or **live stream events**. This strategy allows you to notify Google directly when pages are added or removed, ensuring timely updates to search results.</p>
+</details>
+
+<details>
+    <summary>How do I generate a sitemap using Hawk JS?</summary>
+    <p>You can generate a sitemap by running the Hawk JS CLI command <code>`hawk genmap`</code>. This will create a <code>sitemap.xml</code> file based on your configuration settings.</p>
+</details>
+
+<details>
+    <summary>Can I exclude certain files from the sitemap?</summary>
+    <p>Yes, you can exclude certain files from the sitemap by specifying ignore patterns in the <code>`hawk.config.json`</code> file. These patterns will be used to filter out files that should not be included in the sitemap.</p>
+</details>
+
+<details>
+    <summary>What is the purpose of the `getLastRunTimeStamp` function?</summary>
+    <p>The `getLastRunTimeStamp` function retrieves the timestamp of the last execution or submission. This is useful for filtering updated routes from non-updated routes using the lastRunTimeStamp.</p>
+</details>
+
+<details>
+    <summary>How do I use the IndexNow strategy with Hawk JS?</summary>
+    <p>To use the IndexNow strategy, configure your routes and run hawk with the `IndexNow` strategy. This will rapidly index your new or updated content with search engines that support IndexNow, such as Bing, Yahoo, Yandex, and Yep.</p>
+</details>
+
+<details>
+    <summary>What is the difference between Google Search Console API and Google Indexing API?</summary>
+    <p>The Google Search Console API is used for submitting sitemaps to Google and checking their status, while the Google Indexing API is specifically for notifying Google about updates to pages with certain types of content, like job postings or live stream events.</p>
+</details>
+
+<details>
+    <summary>Can I check the status of my sitemap submissions?</summary>
+    <p>Yes, you can check the status of your sitemap submissions to Google Search Console using the `lastSubmissionStatusGAPI` function provided by Hawk JS. This function retrieves and displays the status of the last submission.</p>
+</details>
+
+<details>
+    <summary>How do I generate and upload a sitemap using the CLI?</summary>
+    <p>To generate and upload a sitemap using the CLI, run <code>`hawk genmap -c`</code>. This will generate the sitemap and upload it to Google Search Console.</p>
+</details>
+
+<details>
+    <summary>What are the supported strategies in Hawk JS?</summary>
+    <p>Hawk JS supports several strategies for sitemap generation and submission: `IndexNow`, `GIndex`, `GWebmaster`, and `GWebmaster2`. Each strategy serves different purposes based on your content and target search engines.</p>
+</details>
+
+<details>
+    <summary>How does Hawk JS handle route changes?</summary>
+    <p>Hawk JS identifies routes with changes since the last submission timestamp using given inclusion and exclusion patterns. This ensures only updated content is submitted for indexing.</p>
+</details>
+
+<details>
+    <summary>How can I update the sitemap without uploading it?</summary>
+    <p>You can update the sitemap without uploading it by setting the `donotUpload` option to `true` in your configuration or CLI command. This will generate the sitemap but skip the upload step.</p>
+</details>
+
+<details>
+    <summary>What is the purpose of the `makeRobot` function?</summary>
+    <p>The `makeRobot` function generates a `robots.txt` file that helps search engines understand which parts of your site should be crawled and indexed.</p>
+</details>
+
+<details>
+    <summary>Can Hawk JS be used with any website?</summary>
+    <p>Yes, Hawk JS can be used with any website, As long as you have node-js environment and can configure the necessary settings and run the CLI commands, Hawk JS will work for your site.</p>
+</details>
+
+<details>
+    <summary>Why are FTP credentials necessary for submitting a sitemap when using gWebmaster or gWebmaster2 strategies?</summary>
+    <p>FTP (File Transfer Protocol) credentials such as hostname, username, and password are required when using `gWebmaster` or `gWebmaster2` strategies in Hawk JS to submit the sitemap directly to FTP server for Google Search Console to utillise and index your website.</p>
+</details>
+
+<details>
+    <summary>Where should I store my FTP credentials for Hawk JS?</summary>
+    <p>FTP credentials should be securely stored in the `secrets.json` file should be located in your project's root directory. This file is used by Hawk JS(`yarn hawk secret`) to set credentials to system environment so that can used when need to access and authenticate with the FTP server when uploading the sitemap.</p>
+</details>
+
+<details>
+    <summary>Why is a Google service account key necessary for GIndex and GWebmaster strategies?</summary>
+    <p>A Google service account key is required for GIndex and GWebmaster strategies in Hawk JS to authenticate and access the Google APIs for indexing and sitemap submission. This key ensures secure communication between Hawk JS and Google services.</p>
+</details>
+
+<details>
+    <summary>Where do I acquire a Google service account key?</summary>
+    <p>You can acquire a Google service account key from the Google Cloud Console. Navigate to the IAM & Admin section, select Service accounts, and create a new service account. Download the JSON key file provided, which contains your service account credentials. It should be stored as `gserv.json` in project root directory.</p>
+</details>
+
+<details>
+    <summary>Do I need to enable specific APIs in Google Cloud Console for Hawk JS?</summary>
+    <p>Yes, you need to enable specific APIs such as the `Google Indexing API` and `Google Search Console API` in the Google Cloud Console for Hawk JS to interact with these services. Ensure that the required APIs are enabled and access permissions are correctly configured.</p>
+</details>
+
+import style from '../stylesheets/utils.module.scss'
+
+<br/>
+<br/>
+<br/>
+<strong>Keywords:</strong>
+<ul className={style.keywords}>
+    <li>Integration process</li>
+    <li>strategies and techniques</li>
+    <li>website optimization</li>
+</ul>

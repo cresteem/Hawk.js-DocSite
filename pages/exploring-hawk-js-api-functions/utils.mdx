@@ -1,0 +1,132 @@
+---
+title: 
+description: 
+thumbnailUrl: https://cresteem.com/opensource/hawk-js/thumbnail.png
+---
+# `utilities` Object
+The `utilities` object in Hawk JS provides a set of helper functions to assist with the sitemap generation and submission processes. These functions support various aspects of managing and tracking sitemaps and their submission status.
+
+## Functions
+
+### 1.`lastSubmissionStatusGAPI`
+
+**Signature:**
+
+```typescript
+lastSubmissionStatusGAPI(): Promise<sitemapMetaOptions>
+```
+
+**Description:**
+
+Retrieves the status of the last sitemap submission to Google Search Console.
+
+**Example:**
+
+```javascript
+const status = await utilities.lastSubmissionStatusGAPI();
+console.log(status);
+```
+
+### 2.`getUpdatedRoutesPath`
+
+**Signature:**
+
+```typescript
+getUpdatedRoutesPath(lastRunTimeStamp: number, lookupPatterns: string[], ignorePattern: string[]): string[]
+```
+
+**Description:**
+
+Detects routes that have been modified since the last submission, using specified inclusion and exclusion patterns.
+
+**Example:**
+
+```javascript
+const updatedRoutes = utilities.getUpdatedRoutesPath(lastRunTimeStamp, ['**/*.html'], ['node_modules/**']);
+console.log(updatedRoutes);
+```
+
+### 3.`makeRobot`
+
+**Signature:**
+
+```typescript
+makeRobot(): string
+```
+
+**Description:**
+
+Generates a `robots.txt` file for SEO directives.
+
+**Example:**
+
+```javascript
+const robotStatus = utilities.makeRobot();
+console.log(robotStatus);
+```
+
+### 4.`makeSitemap`
+
+**Signature:**
+
+```typescript
+makeSitemap(prettify: boolean, lookupPatterns: string[], ignorePattern: string[],donotUpload:boolean=false): Promise<string>
+```
+
+**Description:**
+
+Creates a `sitemap.xml` file using specified prettification and file patterns. Set `donotUpload` to `true` to prevent FTP uploading.
+
+**Example:**
+
+```javascript
+const donotUpload = true;
+const sitemapStatus = await utilities.makeSitemap(true, ['**/*.html'], ['node_modules/**'],donotUpload);
+console.log(sitemapStatus);
+```
+
+### 5.`getLastRunTimeStamp`
+
+**Signature:**
+
+```typescript
+getLastRunTimeStamp(): number
+```
+
+**Description:**
+
+Retrieves the timestamp of the last execution or submission for comparison. This is useful for filtering **updated routes** from non-updated routes using `lastRunTimeStamp`.
+
+**Example:**
+
+```javascript
+const lastRun = utilities.getLastRunTimeStamp();
+console.log(lastRun);
+const updatedRoutes = getUpdatedRoutesPath(lastRun);
+```
+
+### 6.`_makeSitemapRobot`
+
+**Signature:**
+
+```typescript
+_makeSitemapRobot(prettify: boolean, lookupPatterns: string[], ignorePattern: string[]): Promise<void>
+```
+
+**Description:**
+
+An internal function that combines the functionalities of `makeSitemap` and `makeRobot` to create both `sitemap.xml` and `robots.txt`.
+
+**Example:**
+
+```javascript
+await utilities._makeSitemapRobot(true, ['**/*.html'], ['node_modules/**']);
+```
+
+## Usage
+
+These utility functions provide essential support for managing sitemaps and ensuring they are up-to-date and properly submitted to search engines. They help automate tasks and streamline the sitemap management process.
+
+## Conclusion
+
+The `utilities` object in Hawk JS offers a comprehensive set of tools to aid in the creation, management, and submission of sitemaps. By utilizing these utilities, developers can enhance the efficiency and accuracy of their website's SEO processes.

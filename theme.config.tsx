@@ -11,8 +11,8 @@ const config: DocsThemeConfig = {
   },
 
   banner: {
-    key: "0",
-    text: "Working in process",
+    key: "105",
+    text: "Hawk JS version 1.0.5",
     dismissible: true,
   },
 
