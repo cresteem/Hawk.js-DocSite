@@ -26,7 +26,7 @@ const config: DocsThemeConfig = {
 
   chat: {
     link: "https://t.me/cresteem/6",
-    icon: RiTelegramFill({ size: "2.2vw" }),
+    icon: RiTelegramFill({ size: "29" }),
   },
 
   docsRepositoryBase: "https://github.com/cresteem/Hawk-JS-DocSite/tree/main",
@@ -36,6 +36,7 @@ const config: DocsThemeConfig = {
   themeSwitch: {
     component: <ThemeSwitch />,
   },
+  sidebar: { toggleButton: true },
 
   useNextSeoProps: () => {
     const { frontMatter } = useConfig();
