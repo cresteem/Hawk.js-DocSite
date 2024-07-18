@@ -11,4 +11,5 @@ module.exports = {
   },
   basePath: "",
   output: "export",
+  distDir: "dist",
 };
