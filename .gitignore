@@ -1,5 +1,4 @@
 .next
 node_modules
-opensource
 next-env.d.ts
-
+dist
