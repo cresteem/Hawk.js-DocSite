@@ -1,8 +1,8 @@
 {
-  "version": "1.0.7",
+  "version": "1.5.0",
   "api_version": 1,
   "layout": {
-    "logo": "/favicons/yandex-browser-50x50.png",
+    "logo": "/favicons/yandex-browser-50x50.webp",
     "color": "#fff",
     "show_title": true
   }

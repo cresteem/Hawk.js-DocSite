@@ -1,6 +1,6 @@
 .next
 node_modules
 next-env.d.ts
-dist
+out
 gserv.json
 .hawk.lrs
