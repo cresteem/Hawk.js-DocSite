@@ -1,0 +1,119 @@
+---
+title: "Hawk JS: Mastering Search Engine Indexing with hawkStrategy"
+description: "Discover the power of the hawkStrategy object, a key feature of Hawk JS, which provides multiple SEO strategies to enhance your website's presence on search engines like Google, Bing, and more."
+thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbnail.png
+---
+import { Callout } from 'nextra/components'
+
+# `hawkStrategy` Object
+The `hawkStrategy` object in Hawk JS provides different strategies for generating and submitting sitemaps or updated route links to various search engines. It includes methods for handling different protocols and APIs, ensuring your website's content is efficiently indexed.
+
+## Strategies
+
+### 1.`indexNow`
+
+**Signature:**
+
+```typescript
+indexNow: async (routes: string[]) => { ... }
+```
+
+**Description:**
+
+Uses the IndexNow protocol to quickly index specified routes on search engines like Bing, Yahoo, Yandex, and Yep.
+
+**Example:**
+
+```javascript
+await hawkStrategy.indexNow(['www.abc.com/updatedRoute1', 'www.abc.com/updatedRoute2']);
+```
+
+### 2.`gIndex`
+
+<Callout type='warning'>Google service account's credential is required. Follow [Credential](obtaining-google-credentials-for-hawk-js) page.</Callout>
+
+**Signature:**
+
+```typescript
+gIndex: async (routes: string[]) => { ... }
+```
+
+**Description:**
+
+Submits specified routes to Google using the Google Indexing API, ideal for pages with JobPosting or Livestream Broadcasting content.
+
+**Example:**
+
+```javascript
+await hawkStrategy.gIndex(['www.abc.com/updatedRoute1', 'www.abc.com/updatedRoute2']);
+```
+
+### 3.`gWebmaster`
+
+<Callout type='warning'>Google service account's credential is required. Follow [Credential](obtaining-google-credentials-for-hawk-js) page.</Callout>
+
+**Signature:**
+
+```typescript
+gWebmaster: async (
+  prettify: boolean = true,
+  lookupPatterns: string[] = [],
+  ignorePattern: string[] = []
+) => { ... }
+```
+
+**Description:**
+
+Generates `sitemap.xml` and submits it to Google Search Console. This strategy is suitable for all types of websites.
+
+**Example:**
+
+```javascript
+await hawkStrategy.gWebmaster(true, ['**/*.html'], ['node_modules/**']);
+```
+
+### 4.`gWebmaster2`
+
+<Callout type='warning'>Google service account's credential is required. Follow [Credential](obtaining-google-credentials-for-hawk-js) page.</Callout>
+
+**Signature:**
+
+```typescript
+gWebmaster2: async (
+  prettify: boolean = true,
+  lookupPatterns: string[] = [],
+  ignorePattern: string[] = []
+) => { ... }
+```
+
+**Description:**
+
+Similar to `gWebmaster`, but also checks the submission status after uploading the sitemap to Google Search Console.
+
+**Example:**
+
+```javascript
+await hawkStrategy.gWebmaster2(true, ['**/*.html'], ['node_modules/**']);
+```
+
+## Usage
+
+Each strategy function can be used independently to handle specific SEO tasks. They provide flexibility in how sitemaps are generated and submitted, ensuring that your content is kept up-to-date across different search engines.
+
+## Conclusion
+
+The `hawkStrategy` object in Hawk JS offers a range of powerful strategies to help you manage your website’s SEO efficiently. By leveraging these strategies, you can ensure your content is indexed quickly and accurately by major search engines.
+
+import style from '../../stylesheets/utils.module.scss'
+
+<br/>
+<br/>
+<br/>
+<strong>Keywords:</strong>
+<ul className={style.keywords}>
+    <li>website indexing</li>
+    <li>content visibility</li>
+    <li>search engines</li>
+    <li>bing</li>
+    <li>google</li>
+</ul>
