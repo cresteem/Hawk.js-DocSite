@@ -7,53 +7,66 @@ thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbna
 # Configuration Settings in `hawk.config.json`
 
 ## Lookup Patterns
+
 ```json
 "lookupPatterns": [
     "**/*.html",
     "**/*.htm"
 ]
 ```
+
 - **Description:** Specifies the patterns used by Hawk JS to search for HTML files within your project.
 - **Usage:** Customize the patterns to match the file types or locations where your HTML content resides.
 
 ## Ignore Pattern
+
 ```json
 "ignorePattern": [
     "node_modules/**"
 ]
 ```
+
 - **Description:** Defines a pattern to exclude specific directories or files from being included in the sitemap generation process.
 - **Usage:** Adjust the pattern to exclude folders or files that are not relevant for sitemap creation, such as `node_modules` or build directories.
 
 ## Timezone
+
 ```json
 "timeZone": "Asia/Kolkata"
 ```
+
 - **Description:** Sets the timezone for file modification times in Hawk JS.
 - **Usage:** Specify the timezone based on your project's location or operational requirements. This ensures accurate handling of time-related data during sitemap generation and other processes.
 
 ## Domain Name
+
 ```json
 "domainName": "www.example.com"
 ```
+
 - **Description:** Specifies the domain name of your website.
 - **Usage:** Replace `www.example.com` with your actual domain name to generate accurate URLs in the sitemap.
 
 ## Sitemap Path
+
 ```json
 "sitemapPath": "sitemap.xml"
 ```
+
 - **Description:** Defines the path and filename for the generated sitemap file.
 - **Usage:** Customize `sitemap.xml` to specify where Hawk JS should output the sitemap file within your project directory structure.
 
 ## Secret File
+
 ```json
 "secretFile": "secrets.json"
 ```
+
 - **Description:** Points to a JSON file containing sensitive information such as ftp `username`, `password`, and `hostname`.
 - **Usage:** Update `secrets.json` with the necessary credentials or secrets needed for authenticating with FTP server for `sitemap` and `api key` deployment.
 
 ### Secret file structure
+
 ```json filename="secrets.json"
  {
 	host: "ftp.hostname.com";
@@ -64,34 +77,37 @@ thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbna
 
 ## How to Configure Hawk JS
 
-import { Steps, Tabs } from 'nextra/components'
+import { Steps, Tabs } from "nextra/components";
 
 <Steps>
 ### Create `hawk.config.json`
 Create and open the `hawk.config.json` file in the root directory of your project.
 
 ### Configure Settings
+
 Adjust the values of each configuration setting based on your project requirements and specifications.
 
 ### Save Changes
+
 Save the updated `hawk.config.json` file to apply the new configuration settings to Hawk JS.
+
 </Steps>
 
 By configuring these settings in `hawk.config.json`, you can customize Hawk JS to meet the specific needs of your website, ensuring accurate sitemap generation and effective management of tasks.
 
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
 <b>Let's see how to Obtain Credential</b>
 
-import style from '../stylesheets/utils.module.scss'
+import style from "../../stylesheets/utils.module.scss";
 
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
 <strong>Keywords:</strong>
 <ul className={style.keywords}>
-    <li>Configuration settings</li>
-    <li>hawk.config.json</li>
-    <li>customization</li>
+  <li>Configuration settings</li>
+  <li>hawk.config.json</li>
+  <li>customization</li>
 </ul>

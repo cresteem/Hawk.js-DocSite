@@ -3,7 +3,9 @@ title: "Exploring the utilities Object in Hawk JS for SEO Automation"
 description: "Learn how the utilities object in Hawk JS provides powerful tools to track and manage sitemaps, ensuring efficient SEO practices and keeping your website's content visible to search engines."
 thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbnail.png
 ---
+
 # `utilities` Object
+
 The `utilities` object in Hawk JS provides a set of helper functions to assist with the sitemap generation and submission processes. These functions support various aspects of managing and tracking sitemaps and their submission status.
 
 ## Functions
@@ -42,7 +44,11 @@ Detects routes that have been modified since the last submission, using specifie
 **Example:**
 
 ```javascript
-const updatedRoutes = utilities.getUpdatedRoutesPath(lastRunTimeStamp, ['**/*.html'], ['node_modules/**']);
+const updatedRoutes = utilities.getUpdatedRoutesPath(
+  lastRunTimeStamp,
+  ["**/*.html"],
+  ["node_modules/**"]
+);
 console.log(updatedRoutes);
 ```
 
@@ -81,7 +87,12 @@ Creates a `sitemap.xml` file using specified prettification and file patterns. S
 
 ```javascript
 const donotUpload = true;
-const sitemapStatus = await utilities.makeSitemap(true, ['**/*.html'], ['node_modules/**'],donotUpload);
+const sitemapStatus = await utilities.makeSitemap(
+  true,
+  ["**/*.html"],
+  ["node_modules/**"],
+  donotUpload
+);
 console.log(sitemapStatus);
 ```
 
@@ -120,7 +131,7 @@ An internal function that combines the functionalities of `makeSitemap` and `mak
 **Example:**
 
 ```javascript
-await utilities._makeSitemapRobot(true, ['**/*.html'], ['node_modules/**']);
+await utilities._makeSitemapRobot(true, ["**/*.html"], ["node_modules/**"]);
 ```
 
 ## Usage
@@ -131,16 +142,16 @@ These utility functions provide essential support for managing sitemaps and ensu
 
 The `utilities` object in Hawk JS offers a comprehensive set of tools to aid in the creation, management, and submission of sitemaps. By utilizing these utilities, developers can enhance the efficiency and accuracy of their website's SEO processes.
 
-import style from '../../stylesheets/utils.module.scss'
+import style from "../../../stylesheets/utils.module.scss";
 
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
 <strong>Keywords:</strong>
 <ul className={style.keywords}>
-    <li>hawk js</li>
-    <li>utilities object</li>
-    <li>sitemap generation</li>
-    <li>seo automation</li>
-    <li>helper functions</li>
+  <li>hawk js</li>
+  <li>utilities object</li>
+  <li>sitemap generation</li>
+  <li>seo automation</li>
+  <li>helper functions</li>
 </ul>

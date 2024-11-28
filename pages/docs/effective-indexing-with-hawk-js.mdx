@@ -4,7 +4,7 @@ description: "Discover the various strategies Hawk JS employs to ensure effectiv
 thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbnail.png
 ---
 
-import { Callout } from 'nextra/components'
+import { Callout } from "nextra/components";
 
 # Supported Strategies in Hawk JS
 
@@ -18,44 +18,49 @@ IndexNow is a protocol that allows webmasters to notify search engines about con
 **When to Use:**
 Use IndexNow when you need rapid indexing of new or updated content, ensuring minimal delay between content changes and search engine visibility. However, note that not all search engines support the IndexNow protocol. Currently, popular search engines like Bing, Yahoo, Yandex, and Yep support IndexNow. Therefore, before using this strategy, verify if the search engine you are targeting is supported. Will see more about how to work with it in [CLI References](enhancing-seo-with-hawk-js-cli) and [API references](exploring-hawk-js-api-functions).
 
-
 ## 2. Google Indexing API
 
-<Callout type='warning'>Google service account's credential is required. Follow [Credential](obtaining-google-credentials-for-hawk-js) page.</Callout>
+<Callout type="warning">
+  Google service account's credential is required. Follow
+  [Credential](obtaining-google-credentials-for-hawk-js) page.
+</Callout>
 
 **Overview:**
-The Google Indexing API enables website owners to directly notify Google of new page additions or removals. This capability allows Google to schedule fresh crawls, potentially increasing the quality and relevance of user traffic. Currently, the Indexing API is specifically designed for pages containing `JobPosting` or `BroadcastEvent` embedded in a `VideoObject`. 
+The Google Indexing API enables website owners to directly notify Google of new page additions or removals. This capability allows Google to schedule fresh crawls, potentially increasing the quality and relevance of user traffic. Currently, the Indexing API is specifically designed for pages containing `JobPosting` or `BroadcastEvent` embedded in a `VideoObject`.
 
 **When to Use:**
 It is particularly beneficial for websites with frequently updated, short-lived content such as **job postings** or **livestream videos**. By utilizing the Indexing API, updates can be efficiently pushed to Google, ensuring that content remains current and visible in search results.
 
-
 ## 3. Google Search Console API
-<Callout type='warning'>Google service account's credential is required. Follow [Credential](obtaining-google-credentials-for-hawk-js) page.</Callout>
+
+<Callout type="warning">
+  Google service account's credential is required. Follow
+  [Credential](obtaining-google-credentials-for-hawk-js) page.
+</Callout>
 
 **Overview:**
 The Google Search Console API provides a method for managing your website's presence in Google Search results. This API is particularly useful for webmasters and developers who need to automate tasks related to sitemap submission and monitoring.
 
 **When to Use:**
+
 - **Fallback Option:** When the search engine you are targeting does not support the IndexNow protocol or when your content does not qualify for the Google Indexing API.
-  
 - **Traditional Sitemap Submission:** Use this strategy to generate a sitemap for your website and submit it automatically through this strategy.
 
 - **Monitoring Indexing Status:** It allows you to track the indexing status of your web pages and receive insights into how Google crawls and indexes your site.
 
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
 <b>Let's see how to configure!</b>
 
-import style from '../stylesheets/utils.module.scss'
+import style from "../../stylesheets/utils.module.scss";
 
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
 <strong>Keywords:</strong>
 <ul className={style.keywords}>
-    <li>IndexNow</li>
-    <li>Google Indexing API</li>
-    <li>Google Search Console API</li>
+  <li>IndexNow</li>
+  <li>Google Indexing API</li>
+  <li>Google Search Console API</li>
 </ul>

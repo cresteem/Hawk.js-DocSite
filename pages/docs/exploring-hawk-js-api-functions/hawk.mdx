@@ -16,7 +16,7 @@ async function hawk(
   lookupPatterns: string[] = [],
   ignorePattern: string[] = [],
   prettify: boolean = true
-): Promise<void>
+): Promise<void>;
 ```
 
 ### Parameters and Explanation
@@ -29,36 +29,36 @@ async function hawk(
 
 - **prettify** (`boolean`): Flag to format the sitemap for readability. Default is `true`.
 
-
 ### Example Usage
 
 ```js
-import { hawk } from '@cresteem/hawk-js';
+import { hawk } from "@cresteem/hawk-js";
 
 async function main() {
-  const strategy = 'GWebmaster2'; // Choose your strategy
-  const lookupPatterns = ['**/*.html'];
-  const ignorePattern = ['node_modules/**'];
+  const strategy = "GWebmaster2"; // Choose your strategy
+  const lookupPatterns = ["**/*.html"];
+  const ignorePattern = ["node_modules/**"];
   const prettify = true;
 
   try {
     await hawk(strategy, lookupPatterns, ignorePattern, prettify);
-    console.log('Sitemap generated and submitted successfully.');
+    console.log("Sitemap generated and submitted successfully.");
   } catch (err) {
-    console.error('Error:', err);
+    console.error("Error:", err);
   }
 }
 
 main();
 ```
-import style from '../../stylesheets/utils.module.scss'
 
-<br/>
-<br/>
-<br/>
+import style from "../../../stylesheets/utils.module.scss";
+
+<br />
+<br />
+<br />
 <strong>Keywords:</strong>
 <ul className={style.keywords}>
-    <li>open-source tools</li>
-    <li>website indexing</li>
-    <li>search engine optimization</li>
+  <li>open-source tools</li>
+  <li>website indexing</li>
+  <li>search engine optimization</li>
 </ul>
