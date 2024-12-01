@@ -9,6 +9,7 @@ export default {
       colors: {
         primary: "#008080",
         deep: "#004C4C",
+        secondary: "yellowgreen",
       },
     },
   },

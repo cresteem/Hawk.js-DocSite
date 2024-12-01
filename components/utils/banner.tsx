@@ -5,7 +5,7 @@ export default () => {
       target="_blank"
       className="tracking-widest font-normal"
     >
-      Hawk.js 1.5.0 released 🚀{" "}
+      Hawk.js 1.5.1 released 🚀{" "}
       <span className="underline text-deep">Explore</span>
     </a>
   );
