@@ -38,11 +38,14 @@ export default function Footer() {
           </div>
 
           <p className="leading-relaxed mt-2 text-[15px] text-justify">
-            Hawk.js is an advanced sitemap generator and search engine feeder
-            designed to enhance your website's search engine optimization (SEO).
-            It automates the creation of comprehensive sitemaps and simplifies
-            submission to major search engines like Google, Bing, Yahoo, Yandex,
-            and more, ensuring your site is indexed accurately and quickly.
+            Hawk.js is an advanced, open-source sitemap generator and SEO
+            automation tool designed to enhance your website's search engine
+            visibility. It automates the creation of comprehensive sitemaps and
+            simplifies their submission to major search engines such as Google,
+            Bing, Yahoo, Yandex, and more. With support for multiple indexing
+            strategies like IndexNow and Google Webmaster Tools, Hawk.js ensures
+            your website is indexed accurately and quickly, driving better SEO
+            performance.
           </p>
         </div>
         <ul className="text-center items-center justify-center mt-8 space-y-5 sm:flex sm:space-x-4 sm:space-y-0">
