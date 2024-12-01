@@ -1,11 +1,10 @@
 .keywords {
     display: flex;
-    width: 50vw;
     flex-wrap: wrap;
 
     li {
         border-radius: 3ch;
-        padding: 0.5ch 1.2ch;
+        @apply px-3 py-1;
         margin-top: 1ch;
         margin-left: 1.5ch;
         border: rgba(0, 0, 0, 0.08) solid 1.8px;
