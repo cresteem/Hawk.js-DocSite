@@ -15,14 +15,14 @@ export default function Yandex({ className }: { className: string }) {
         y2="33.479"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#f52537" />
-        <stop offset=".293" stop-color="#f32536" />
-        <stop offset=".465" stop-color="#ea2434" />
-        <stop offset=".605" stop-color="#dc2231" />
-        <stop offset=".729" stop-color="#c8202c" />
-        <stop offset=".841" stop-color="#ae1e25" />
-        <stop offset=".944" stop-color="#8f1a1d" />
-        <stop offset="1" stop-color="#7a1818" />
+        <stop offset="0" stopColor="#f52537" />
+        <stop offset=".293" stopColor="#f32536" />
+        <stop offset=".465" stopColor="#ea2434" />
+        <stop offset=".605" stopColor="#dc2231" />
+        <stop offset=".729" stopColor="#c8202c" />
+        <stop offset=".841" stopColor="#ae1e25" />
+        <stop offset=".944" stopColor="#8f1a1d" />
+        <stop offset="1" stopColor="#7a1818" />
       </linearGradient>
       <path
         fill="url(#lpa7hSZqz_S376v76E9kia)"

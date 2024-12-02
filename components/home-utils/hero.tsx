@@ -20,11 +20,18 @@ export default function Hero() {
           </h2>
           <p>
             Automates your SEO process by effortlessly submitting your sitemap,
-            ensuring search engines like Google, Bing, Yahoo, DuckDuckGo,
-            Yandex, Naver, Seznam.cz, and Yep stay updated with your latest
+            ensuring search engines like{" "}
+            <a href="https://google.com/">Google</a>,{" "}
+            <a href="https://bing.com/">Bing</a>,{" "}
+            <a href="https://www.yahoo.com/">Yahoo</a>,{" "}
+            <a href="https://duckduckgo.com/">DuckDuckGo</a>,{" "}
+            <a href="https://yandex.com/">Yandex</a>,{" "}
+            <a href="https://www.naver.com/">Naver</a>,{" "}
+            <a href="https://www.seznam.cz/">Seznam.cz</a>, and{" "}
+            <a href="https://yep.com/">Yep</a> stay updated with your latest
             content.
           </p>
-          <div className="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
+          <div className="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0 pb-7">
             <NPMInstall className="relative w-full" />
             <GetStarted className="bg-primary w-[70%] px-[10%] py-[6px] text-white font-semibold tracking-wider  rounded-lg text-center border-[2px] hover:bg-primary/[80%] border-primary" />
           </div>
@@ -33,12 +40,14 @@ export default function Hero() {
           <Universe />
         </div>
       </div>
-      <div className="mt-14 px-4 md:px-8">
+      <div className="mt-10 px-4 md:px-8">
         <p className="text-center text-sm text-gray-700 font-semibold">
           Sponsor by the best companies
         </p>
         <div className="flex justify-center items-center flex-wrap gap-x-12 gap-y-6 mt-6 text-primary">
-          <CresteemBrandMark classNames="w-[190px]" />
+          <a href="https://cresteem.com/" target="_blank">
+            <CresteemBrandMark classNames="w-[190px]" />
+          </a>
           <a className="bl" href="/sponsors">
             Your Logo can be Here
           </a>

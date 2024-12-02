@@ -7,7 +7,7 @@ export default function Naver({ className }: { className: string }) {
       viewBox="0,0,256,256"
       width="64px"
       height="64px"
-      fill-rule="nonzero"
+      fillRule="nonzero"
     >
       <defs>
         <linearGradient
@@ -18,8 +18,8 @@ export default function Naver({ className }: { className: string }) {
           gradientUnits="userSpaceOnUse"
           id="color-1"
         >
-          <stop offset="0" stop-color="#20c997"></stop>
-          <stop offset="1" stop-color="#20c997"></stop>
+          <stop offset="0" stopColor="#20c997"></stop>
+          <stop offset="1" stopColor="#20c997"></stop>
         </linearGradient>
         <linearGradient
           x1="32"
@@ -29,24 +29,24 @@ export default function Naver({ className }: { className: string }) {
           gradientUnits="userSpaceOnUse"
           id="color-2"
         >
-          <stop offset="0" stop-color="#20c997"></stop>
-          <stop offset="1" stop-color="#20c997"></stop>
+          <stop offset="0" stopColor="#20c997"></stop>
+          <stop offset="1" stopColor="#20c997"></stop>
         </linearGradient>
       </defs>
       <g
         fill="none"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         stroke="none"
-        stroke-width="1"
-        stroke-linecap="butt"
-        stroke-linejoin="miter"
-        stroke-miterlimit="10"
-        stroke-dasharray=""
-        stroke-dashoffset="0"
-        font-family="none"
-        font-weight="none"
-        font-size="none"
-        text-anchor="none"
+        strokeWidth="1"
+        strokeLinecap="butt"
+        strokeLinejoin="miter"
+        strokeMiterlimit="10"
+        strokeDasharray=""
+        strokeDashoffset="0"
+        fontFamily="none"
+        fontWeight="none"
+        fontSize="none"
+        textAnchor="none"
         style={{ mixBlendMode: "normal" }}
       >
         <g transform="scale(4,4)">

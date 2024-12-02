@@ -1,3 +1,56 @@
+$search-engines: yep, seznam, naver, yandex, ddgo, yahoo, bing, google;
+@use "sass:math";
+@use "sass:list";
+
+@mixin init-orbit-size($initial-val: 12dvmin) {
+    @for $i from 1 through list.length($search-engines) {
+        $orbit: list.nth($search-engines, $i);
+        #{'--' + $orbit + '-orbit-size'}: $i * $initial-val;
+    }
+}
+
+@mixin set-orbit-size() {
+    @each $search-engine in $search-engines {
+        .orbit.#{$search-engine} {
+            #{"--size"}: var(#{"--" + $search-engine + "-orbit-size"});
+        }
+    }
+}
+
+@mixin set-icon-size($initial-val: 4dvmin) {
+    @for $i from 1 through list.length($search-engines) {
+        $search-engine: list.nth($search-engines, $i);
+        .body.#{$search-engine} {
+            #{"--size"}: ($i - 0.5) + $initial-val;
+        }
+    }
+}
+
+@mixin set-orbit-progress($initial-val: 0.1) {
+    @for $i from 1 through list.length($search-engines) {
+        $search-engine: list.nth($search-engines, $i);
+        .body.#{$search-engine} {
+            #{"--orbit-progress"}: math.div($i, 5) + $initial-val;
+        }
+    }
+}
+
+@mixin set-body-var() {
+    $icons: list.join(hawk-js, $search-engines);
+
+    @for $i from 1 through list.length($icons) {
+        $icon: list.nth($icons, $i);
+        .body.#{$icon} {
+            #{"--i"}: $i - 1;
+            #{"--color-1"}: white;
+            #{"--color-2"}: white;
+            @if ($i>1) {
+                #{"--astronomical-unit"}: calc(var(#{"--" + $icon + "-orbit-size"}) / 2);
+            }
+        }
+    }
+}
+
 .universe {
     --pov: 66deg;
     --day: 3s;
@@ -6,74 +59,16 @@
     --orbit-line-color: theme(colors.primary);
     --orbit-line-thickness: calc(0.1rem + 0.09dvmin);
     --orbit-plane-color: radial-gradient(circle at center, theme(colors.primary/1%), theme(colors.deep/1%));
-    --yep-orbit-size: 10dvmin;
-    --seznam-orbit-size: 18dvmin;
-    --naver-orbit-size: 25dvmin;
-    --yandex-orbit-size: 32dvmin;
-    --ddgo-orbit-size: 40dvmin;
-    --yahoo-orbit-size: 52dvmin;
-    --bing-orbit-size: 64dvmin;
-    --stars-orbit-size: 76dvmin;
     --number-of-bodies: 10;
     --circle-delay: calc(var(--day) / 3.97);
     --circular-ease: cubic-bezier(0.37, 0, 0.63, 1);
+    @include init-orbit-size();
 }
 
-:nth-child(1 of :is(.orbit)) {
-    --i: 0;
-}
-:nth-child(2 of :is(.orbit)) {
-    --i: 1;
-}
-:nth-child(3 of :is(.orbit)) {
-    --i: 2;
-}
-:nth-child(4 of :is(.orbit)) {
-    --i: 3;
-}
-:nth-child(5 of :is(.orbit)) {
-    --i: 4;
-}
-:nth-child(6 of :is(.orbit)) {
-    --i: 5;
-}
-:nth-child(7 of :is(.orbit)) {
-    --i: 6;
-}
-:nth-child(8 of :is(.orbit)) {
-    --i: 7;
-}
-
-:nth-child(1 of :is(.body, .body-container)) {
-    --i: 0;
-}
-:nth-child(2 of :is(.body, .body-container)) {
-    --i: 1;
-}
-:nth-child(3 of :is(.body, .body-container)) {
-    --i: 2;
-}
-:nth-child(4 of :is(.body, .body-container)) {
-    --i: 3;
-}
-:nth-child(5 of :is(.body, .body-container)) {
-    --i: 4;
-}
-:nth-child(6 of :is(.body, .body-container)) {
-    --i: 5;
-}
-:nth-child(7 of :is(.body, .body-container)) {
-    --i: 6;
-}
-:nth-child(8 of :is(.body, .body-container)) {
-    --i: 7;
-}
-:nth-child(9 of :is(.body, .body-container)) {
-    --i: 8;
-}
-:nth-child(10 of :is(.body, .body-container)) {
-    --i: 9;
-}
+@include set-orbit-size();
+@include set-icon-size();
+@include set-orbit-progress();
+@include set-body-var();
 
 .universe {
     @apply w-full mx-auto !important;
@@ -116,180 +111,7 @@
     }
 }
 
-/* orbit semi-sphere */
-/* .orbit::after {
-    --cutout: calc(var(--size) / 2 + var(--orbit-line-thickness));
-    content: "";
-    position: absolute;
-    top: -75%;
-    left: calc(-1 * var(--orbit-line-thickness));
-    width: calc(100% + var(--orbit-line-thickness) * 2);
-    height: 250%;
-    background: radial-gradient(circle var(--cutout) at center, #0000 99.9%, var(--orbit-sphere-color));
-    border-radius: 50%;
-    -webkit-clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-} */
-
-.orbit.yep {
-    --size: var(--yep-orbit-size);
-}
-
-.orbit.seznam {
-    --size: var(--seznam-orbit-size);
-}
-
-.orbit.naver {
-    --size: var(--naver-orbit-size);
-}
-
-.orbit.yandex {
-    --size: var(--yandex-orbit-size);
-}
-
-.orbit.ddgo {
-    --size: var(--ddgo-orbit-size);
-}
-
-.orbit.yahoo {
-    --size: var(--yahoo-orbit-size);
-}
-
-.orbit.bing {
-    --size: var(--bing-orbit-size);
-}
-
-.orbit.stars {
-    --size: var(--stars-orbit-size);
-    --orbit-sphere-color: theme(colors.primary/60%);
-    --orbit-line-color: theme(colors.primary);
-}
-/* 
-.orbit.stars .star {
-    --size: 8dvmin;
-    --astronomical-unit: calc(var(--stars-orbit-size) / 2 - (var(--y) * var(--y)) * 14dvmin);
-    --star-x-delay: calc(var(--j) * -0.5s);
-    content: "";
-    position: absolute;
-    z-index: 1;
-    bottom: -8%;
-    left: calc(50% + var(--astronomical-unit));
-    width: calc(var(--size) * cos(var(--pov)));
-    height: var(--size);
-    background: #fff0ea99;
-    mix-blend-mode: color-dodge;
-    -webkit-clip-path: polygon(50% 0, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%);
-    clip-path: polygon(50% 0, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%);
-    translate: -50% calc(-50% + var(--y) * 800%);
-    rotate: x calc(var(--y) * 80deg);
-    scale: calc(1 - var(--y) / 1.5) calc(1 - var(--y) / 2);
-    transform-style: preserve-3d;
-    -webkit-animation:
-        star-rise-and-shine var(--day) var(--star-x-delay) infinite,
-        star-move-x var(--day) var(--star-x-delay) infinite var(--circular-ease),
-        star-move-y var(--day) calc(0s - var(--circle-delay) + var(--star-x-delay)) infinite var(--circular-ease);
-    animation:
-        star-rise-and-shine var(--day) var(--star-x-delay) infinite,
-        star-move-x var(--day) var(--star-x-delay) infinite var(--circular-ease),
-        star-move-y var(--day) calc(0s - var(--circle-delay) + var(--star-x-delay)) infinite var(--circular-ease);
-}
-
-@-webkit-keyframes star-rise-and-shine {
-    from,
-    52%,
-    to {
-        opacity: 0;
-    }
-    60%,
-    93% {
-        opacity: 1;
-    }
-    63%,
-    67%,
-    71%,
-    76%,
-    81%,
-    86%,
-    91% {
-        opacity: 1;
-    }
-    61%,
-    65%,
-    69%,
-    73%,
-    78%,
-    83%,
-    89% {
-        opacity: max(0.3, sin(var(--j)));
-    }
-}
-
-@keyframes star-rise-and-shine {
-    from,
-    52%,
-    to {
-        opacity: 0;
-    }
-    60%,
-    93% {
-        opacity: 1;
-    }
-    63%,
-    67%,
-    71%,
-    76%,
-    81%,
-    86%,
-    91% {
-        opacity: 1;
-    }
-    61%,
-    65%,
-    69%,
-    73%,
-    78%,
-    83%,
-    89% {
-        opacity: max(0.3, sin(var(--j)));
-    }
-}
-
-@-webkit-keyframes star-move-x {
-    from,
-    to {
-        transform: rotateY(-70deg);
-    }
-    50% {
-        transform: rotateY(70deg);
-        left: calc(50% - var(--astronomical-unit));
-    }
-}
-
-@keyframes star-move-x {
-    from,
-    to {
-        transform: rotateY(-70deg);
-    }
-    50% {
-        transform: rotateY(70deg);
-        left: calc(50% - var(--astronomical-unit));
-    }
-}
-
-@-webkit-keyframes star-move-y {
-    50% {
-        bottom: calc(50% + var(--astronomical-unit) * cos(var(--pov)));
-    }
-}
-
-@keyframes star-move-y {
-    50% {
-        bottom: calc(50% + var(--astronomical-unit) * cos(var(--pov)));
-    }
-} */
-
-.body,
-.body-container {
+.body {
     --inner-orbit: 0;
     --orbit-progress: 0;
     --yandexlight-delay: calc(var(--yandex-orbit-progress) * var(--day) * -1);
@@ -391,104 +213,56 @@
     }
 }
 
-.body-container.hawk-js,
-.body-container.yep,
-.body-container.seznam,
+.body.hawk-js,
+.body.yep,
+.body.seznam,
 .naver {
     --inner-orbit: 1;
 }
 
-.body-container.hawk-js {
+.body.hawk-js {
     --size: 7dvmin;
-    --color-1: white;
-    --color-2: white;
     --astronomical-unit: 0%;
     --orbit-progress: calc(1 - var(--yandex-orbit-progress));
     padding: 0.4rem;
     @apply border border-primary/[30%];
 }
 
-.body-container.yep {
-    --size: 4dvmin;
+.body.yep {
     --color-1: yellow;
     --color-2: yellow;
-    --astronomical-unit: calc(var(--yep-orbit-size) / 2);
-    --orbit-progress: 0.2;
-    overflow: hidden;
 }
 
-.body-container.seznam {
-    --size: 4dvmin;
-    --color-1: white;
-    --color-2: white;
-    --astronomical-unit: calc(var(--seznam-orbit-size) / 2);
-    --orbit-progress: 0.35;
-    overflow: hidden;
+.body.seznam {
     padding: 0.2rem;
 }
 
 .body.naver {
-    --size: 5dvmin;
-    --color-1: white;
-    --color-2: white;
-    --astronomical-unit: calc(var(--naver-orbit-size) / 2);
-    --orbit-progress: 0.3;
     padding: 0.2rem;
 }
 
 .body.yandex {
-    --size: 6dvmin;
     --color-1: theme(colors.gray.100);
     --color-2: theme(colors.gray.100);
-    --astronomical-unit: calc(var(--yandex-orbit-size) / 2);
-    --orbit-progress: var(--yandex-orbit-progress);
-    -webkit-animation: var(--anim-body-reveal), var(--anim-body-index), var(--anim-body-move-x), var(--anim-body-move-y);
-    animation: var(--anim-body-reveal), var(--anim-body-index), var(--anim-body-move-x), var(--anim-body-move-y);
     padding: 0.25rem;
 }
 
-.body-container.ddgo {
-    --size: 5.5dvmin;
+.body.ddgo {
     --color-1: transparent;
     --color-2: transparent;
-    --astronomical-unit: calc(var(--ddgo-orbit-size) / 2);
-    --orbit-progress: 0.6;
-    overflow: hidden;
     margin-top: 3%;
 }
 
 .body.yahoo {
-    --size: 6dvmin;
-    --color-1: white;
-    --color-2: white;
-    --astronomical-unit: calc(var(--yahoo-orbit-size) / 2);
-    --orbit-progress: 0.4;
-    overflow: hidden;
     padding: 0.4rem;
     margin-top: 3%;
 }
 
-.body-container.bing {
-    --size: 8dvmin;
-    --color-1: white;
-    --color-2: white;
-    --astronomical-unit: calc(var(--bing-orbit-size) / 2);
-    --orbit-progress: 0.1;
-    --ring-a-size: 180%;
-    --ring-a-color: var(--color-1);
-    --ring-b-size: 200%;
-    --ring-b-color: var(--color-1);
+.body.bing {
     margin-top: 3%;
     padding: 0.4rem;
 }
 
-.body-container.google {
-    --size: 10dvmin;
-    --color-1: white;
-    --color-2: white;
-    --astronomical-unit: calc(var(--stars-orbit-size) / 2);
-    --orbit-progress: 0.35;
-    --evolution-speed: calc(var(--day) / 3);
-    --arm-thickness: 0dvmin;
+.body.google {
     margin-top: 3%;
 }

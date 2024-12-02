@@ -15,8 +15,8 @@ export default function Bing({ className }: { className: string }) {
         y2="40.401"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#3dbffc" />
-        <stop offset="1" stop-color="#183efb" />
+        <stop offset="0" stopColor="#3dbffc" />
+        <stop offset="1" stopColor="#183efb" />
       </linearGradient>
       <path
         fill="url(#ZkmZ8eVihrQTUnr9TZpNla)"
@@ -30,13 +30,13 @@ export default function Bing({ className }: { className: string }) {
         y2="25.575"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#33bef0" />
-        <stop offset=".159" stop-color="#32b9f0" />
-        <stop offset=".341" stop-color="#2facf2" />
-        <stop offset=".533" stop-color="#2a95f4" />
-        <stop offset=".733" stop-color="#2475f6" />
-        <stop offset=".936" stop-color="#1b4cfa" />
-        <stop offset="1" stop-color="#183efb" />
+        <stop offset="0" stopColor="#33bef0" />
+        <stop offset=".159" stopColor="#32b9f0" />
+        <stop offset=".341" stopColor="#2facf2" />
+        <stop offset=".533" stopColor="#2a95f4" />
+        <stop offset=".733" stopColor="#2475f6" />
+        <stop offset=".936" stopColor="#1b4cfa" />
+        <stop offset="1" stopColor="#183efb" />
       </linearGradient>
       <path
         fill="url(#ZkmZ8eVihrQTUnr9TZpNlb)"
@@ -50,8 +50,8 @@ export default function Bing({ className }: { className: string }) {
         y2="38.588"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#3dbffd" />
-        <stop offset="1" stop-color="#1de9b6" />
+        <stop offset="0" stopColor="#3dbffd" />
+        <stop offset="1" stopColor="#1de9b6" />
       </linearGradient>
       <path
         fill="url(#ZkmZ8eVihrQTUnr9TZpNlc)"
