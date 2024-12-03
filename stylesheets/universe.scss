@@ -93,8 +93,8 @@ $search-engines: yep, seznam, naver, yandex, ddgo, yahoo, bing, google;
     rotate: x var(--pov);
     translate: -50% -40%;
     opacity: 0;
-    -webkit-animation: orbit-appear 1.5s var(--enter-delay, 0.1s) forwards;
-    animation: orbit-appear 1.5s var(--enter-delay, 0.1s) forwards;
+    -webkit-animation: orbit-appear 2s var(--enter-delay, 0.1s) forwards;
+    animation: orbit-appear 2s var(--enter-delay, 0.1s) forwards;
 }
 
 @-webkit-keyframes orbit-appear {
