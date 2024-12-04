@@ -7,9 +7,9 @@ import Seznam from "./universe-icons/seznam";
 import Yahoo from "./universe-icons/yahoo";
 import Yandex from "./universe-icons/yandex";
 import Yep from "./universe-icons/yep";
-export default function Universe() {
+export default function Universe({ className }: { className: string }) {
   return (
-    <div className="universe">
+    <div className={`universe ${className}`}>
       <div className="orbit yep"></div>
       <div className="orbit seznam"></div>
       <div className="orbit naver"></div>

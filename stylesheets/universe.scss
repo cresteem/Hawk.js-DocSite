@@ -1,11 +1,44 @@
-$search-engines: yep, seznam, naver, yandex, ddgo, yahoo, bing, google;
 @use "sass:math";
 @use "sass:list";
+@use "sass:map";
 
-@mixin init-orbit-size($initial-val: 12dvmin) {
+// Tailwind breakpoints as SCSS variables
+$breakpoints: (
+    entry: 0px,
+    sm: 640px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px,
+    2xl: 1536px
+);
+
+// Mixin to use Tailwind breakpoints
+@mixin respond-to($breakpoint: entry) {
+    $size: map.get($breakpoints, $breakpoint);
+    @if $size {
+        @media (min-width: #{$size}) {
+            @content;
+        }
+    } @else {
+        @warn "Breakpoint `#{$breakpoint}` not found in $breakpoints map.";
+    }
+}
+
+$search-engines: yep, seznam, naver, yandex, ddgo, yahoo, bing, google;
+
+@mixin init-orbit-size($initial-val: 20%) {
     @for $i from 1 through list.length($search-engines) {
         $orbit: list.nth($search-engines, $i);
         #{'--' + $orbit + '-orbit-size'}: $i * $initial-val;
+    }
+}
+
+@mixin init-orbit-sizes() {
+    @include init-orbit-size();
+
+    @include respond-to(sm) {
+        $initial-val: 15%;
+        @include init-orbit-size($initial-val);
     }
 }
 
@@ -17,12 +50,26 @@ $search-engines: yep, seznam, naver, yandex, ddgo, yahoo, bing, google;
     }
 }
 
-@mixin set-icon-size($initial-val: 4dvmin) {
+@mixin set-icon-size($initial-val: 8%) {
     @for $i from 1 through list.length($search-engines) {
         $search-engine: list.nth($search-engines, $i);
         .body.#{$search-engine} {
-            #{"--size"}: ($i - 0.5) + $initial-val;
+            #{"--size"}: ($i * 1.7) + $initial-val;
         }
+    }
+}
+
+@mixin set-icon-sizes() {
+    @include set-icon-size();
+
+    @include respond-to(sm) {
+        $initial-val: 3%;
+        @include set-icon-size($initial-val);
+    }
+
+    @include respond-to(xl) {
+        $initial-val: 2.5%;
+        @include set-icon-size($initial-val);
     }
 }
 
@@ -57,26 +104,23 @@ $search-engines: yep, seznam, naver, yandex, ddgo, yahoo, bing, google;
     --yandex-orbit-progress: 0.7;
     --orbit-sphere-color: theme(colors.primary/60%);
     --orbit-line-color: theme(colors.primary);
-    --orbit-line-thickness: calc(0.1rem + 0.09dvmin);
+    --orbit-line-thickness: 0.05rem;
     --orbit-plane-color: radial-gradient(circle at center, theme(colors.primary/1%), theme(colors.deep/1%));
     --number-of-bodies: 10;
     --circle-delay: calc(var(--day) / 3.97);
     --circular-ease: cubic-bezier(0.37, 0, 0.63, 1);
-    @include init-orbit-size();
-}
 
-@include set-orbit-size();
-@include set-icon-size();
-@include set-orbit-progress();
-@include set-body-var();
-
-.universe {
-    @apply w-full mx-auto !important;
-    height: 100%;
     perspective: 50000px;
     translate: 0 -5%;
     position: relative;
+
+    @include init-orbit-sizes();
 }
+
+@include set-orbit-size();
+@include set-icon-sizes();
+@include set-orbit-progress();
+@include set-body-var();
 
 /* orbit line */
 .orbit {
@@ -84,8 +128,8 @@ $search-engines: yep, seznam, naver, yandex, ddgo, yahoo, bing, google;
     position: absolute;
     top: 50%;
     left: 50%;
-    width: var(--size, 30dvmin);
-    height: var(--size, 30dvmin);
+    width: var(--size, 100%);
+    height: var(--size, 100%);
     border-radius: 50%;
     background: var(--orbit-plane-color);
     box-shadow: 0 0 0 var(--orbit-line-thickness) var(--orbit-line-color);
@@ -221,7 +265,7 @@ $search-engines: yep, seznam, naver, yandex, ddgo, yahoo, bing, google;
 }
 
 .body.hawk-js {
-    --size: 7dvmin;
+    --size: 2.7rem;
     --astronomical-unit: 0%;
     --orbit-progress: calc(1 - var(--yandex-orbit-progress));
     padding: 0.4rem;

@@ -5,8 +5,8 @@ import Universe from "./universe";
 
 export default function Hero() {
   return (
-    <section className="py-[5%]">
-      <div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 items-center justify-between overflow-hidden md:flex md:px-8">
+    <section className="py-[5%] xl:py-8 mt-6 sm:mt-0 w-[100%]">
+      <div className="w-full max-w-screen-xl mx-auto text-gray-600 gap-x-12 items-center justify-between overflow-hidden flex md:px-8 flex-col lg:flex-row">
         <div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
           <h1 className="text-sm text-primary font-medium">
             One Tool, All Search Engines.
@@ -31,13 +31,13 @@ export default function Hero() {
             <a href="https://yep.com/">Yep</a> stay updated with your latest
             content.
           </p>
-          <div className="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0 pb-7">
-            <NPMInstall className="relative w-full" />
-            <GetStarted className="bg-primary w-[70%] px-[10%] py-[6px] text-white font-semibold tracking-wider  rounded-lg text-center border-[2px] hover:bg-primary/[80%] border-primary" />
+          <div className="w-[80%] sm:w-auto sm:items-center sm:justify-center gap-x-3 space-y-3 flex flex-col sm:flex-row sm:space-y-0 pb-7 mx-auto">
+            <NPMInstall className="relative sm:w-[50%]" />
+            <GetStarted className="bg-primary px-[10%] py-[6px] text-white font-semibold tracking-wider  rounded-lg text-center border-[2px] hover:bg-primary/[80%] border-primary sm:w-[50%]" />
           </div>
         </div>
-        <div className="w-full">
-          <Universe />
+        <div className="w-[66vw] h-[67vw] lg:w-[20rem] lg:h-[20rem] xl:w-[25rem] xl:h-[25rem] relative my-8 px-4 lg:my-0 lg:px-0 mx-auto">
+          <Universe className="flex m-auto h-full w-full lg:mt-5" />
         </div>
       </div>
       <div className="mt-10 px-4 md:px-8">
