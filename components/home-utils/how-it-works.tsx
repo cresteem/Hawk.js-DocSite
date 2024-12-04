@@ -4,16 +4,16 @@ import Logo from "../utils/hawk-logo";
 
 export default function HowItWorks() {
   return (
-    <section className="py-14 leading-loose tracking-wide">
+    <section className="py-7 leading-loose tracking-wide">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
         <div className="relative max-w-2xl mx-auto sm:text-center">
-          <h3 className="text-gray-800 text-3xl font-bold sm:text-4xl">
+          <h3 className="text-gray-800 text-3xl font-bold sm:text-4xl text-center">
             How to Get Started with Hawk.js 🚀
             <span className="text-primary font-semibold">
               Effortless Setup for Seamless SEO
             </span>
           </h3>
-          <p className="mt-3 text-justify">
+          <p className="mt-6 text-justify">
             Hawk.js simplifies sitemap generation and submission through
             automation to help your website get visibilty on search engines.
             With just a few steps, you can integrate powerful tools and

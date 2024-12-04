@@ -3,7 +3,7 @@ export default function ComparisonTable() {
     <section className="py-5 leading-loose tracking-wide">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
         <div className="relative z-10 max-w-2xl mx-auto sm:text-center">
-          <h3 className="text-gray-800 text-3xl font-bold sm:text-4xl">
+          <h3 className="text-gray-800 text-3xl font-bold sm:text-4xl text-center">
             Why Every <span className="text-primary">Website</span> Needs{" "}
             <span className="text-primary">Hawk.js</span>?
           </h3>
