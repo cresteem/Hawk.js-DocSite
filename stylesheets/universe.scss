@@ -50,11 +50,11 @@ $search-engines: yep, seznam, naver, yandex, ddgo, yahoo, bing, google;
     }
 }
 
-@mixin set-icon-size($initial-val: 8%) {
+@mixin set-icon-size($initial-val: 13%) {
     @for $i from 1 through list.length($search-engines) {
         $search-engine: list.nth($search-engines, $i);
         .body.#{$search-engine} {
-            #{"--size"}: ($i * 1.7) + $initial-val;
+            #{"--size"}: ($initial-val + ($i * 0.9));
         }
     }
 }
@@ -63,12 +63,7 @@ $search-engines: yep, seznam, naver, yandex, ddgo, yahoo, bing, google;
     @include set-icon-size();
 
     @include respond-to(sm) {
-        $initial-val: 3%;
-        @include set-icon-size($initial-val);
-    }
-
-    @include respond-to(xl) {
-        $initial-val: 2.5%;
+        $initial-val: 8%;
         @include set-icon-size($initial-val);
     }
 }

@@ -31,16 +31,16 @@ export default function Hero() {
             <a href="https://yep.com/">Yep</a> stay updated with your latest
             content.
           </p>
-          <div className="w-[80%] sm:w-auto sm:items-center sm:justify-center gap-x-3 space-y-3 flex flex-col sm:flex-row sm:space-y-0 pb-7 mx-auto">
+          <div className="sm:items-center sm:justify-center gap-x-3 space-y-3 flex flex-col sm:flex-row sm:space-y-0 pb-7 mx-auto">
             <NPMInstall className="relative sm:w-[50%]" />
-            <GetStarted className="bg-primary px-[10%] py-[6px] text-white font-semibold tracking-wider  rounded-lg text-center border-[2px] hover:bg-primary/[80%] border-primary sm:w-[50%]" />
+            <GetStarted className="sm:w-[50%] bg-primary px-[10%] py-[6px] text-white font-semibold tracking-wider  rounded-lg text-center border-[2px] hover:bg-primary/[80%] border-primary" />
           </div>
         </div>
-        <div className="w-[66vw] h-[67vw] lg:w-[20rem] lg:h-[20rem] xl:w-[25rem] xl:h-[25rem] relative my-8 px-4 lg:my-0 lg:px-0 mx-auto">
+        <div className="w-[66vw] h-[67vw] lg:w-[20rem] lg:h-[20rem] xl:w-[25rem] xl:h-[25rem] relative my-8 px-4 sm:my-0 lg:px-0 mx-auto">
           <Universe className="flex m-auto h-full w-full lg:mt-5" />
         </div>
       </div>
-      <div className="mt-10 px-4 md:px-8">
+      <div className="lg:mt-8 px-4 md:px-8">
         <p className="text-center text-sm text-gray-700 font-semibold">
           Sponsor by the best companies
         </p>
