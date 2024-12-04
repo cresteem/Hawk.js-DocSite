@@ -67,9 +67,9 @@ jobs:
       - name: Sitemap update
         run: |
           npm i @cresteem/hawk-js -g
-          cp hawk.config.json ./out/hawk.config.json
+          cp hawk.config.js ./out/hawk.config.js
           cd out
-          hawk genmap || true
+          hawk genmap
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
