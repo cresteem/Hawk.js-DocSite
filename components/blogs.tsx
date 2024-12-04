@@ -1,12 +1,12 @@
 export default () => {
-  const posts: { title: string; desc: string; date: string; href: string }[] = [
-    /*  {
+  /* const posts: { title: string; desc: string; date: string; href: string }[] = [
+     {
       title: ,
       desc: ,
       date: "Wednesday, November 27th 2024",
       href: "",
-    }, */
-  ];
+    }, 
+  ]; */
 
   return (
     <section className="mt-12 mb-[9%] mx-auto px-4 max-w-screen-lg md:px-8 leading-loose">
