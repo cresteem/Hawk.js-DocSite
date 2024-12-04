@@ -143,7 +143,7 @@ const config = {
         <link
           rel="yandex-tableau-widget"
           href="/favicons/yandex-browser-manifest.json"
-        />{" "}
+        />
         {/*  */}
         <meta name="twitter:card" content={thumbnailUrl} />
         <meta name="twitter:title" content={title} />

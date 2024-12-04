@@ -2,16 +2,16 @@ import { favicons } from "favicons";
 import { mkdirSync, writeFileSync } from "fs";
 import { basename, join } from "path";
 
-export async function generateFavicons(
+export async function generateFavicons({
   metaDesc,
   version,
-  baseImage = "./dev/fav.webp",
+  baseImage = "dev/fav.png",
   appName = basename(process.cwd()),
   basepath = join(process.cwd(), "public"),
   faviconsPath = "favicons",
   devName = "Darsan",
-  devWebsite = "https://darsan.in"
-) {
+  devWebsite = "https://darsan.in",
+}) {
   const options = {
     path: faviconsPath,
 
@@ -73,7 +73,9 @@ export async function generateFavicons(
   }
 }
 
-generateFavicons(
-  "Hawk JS is the ultimate tool for web developers and SEO enthusiasts. Find out how it can streamline your SEO efforts, ensuring your website gains visibility and improves its search engine ranking.",
-  "1.5.0"
-);
+generateFavicons({
+  metaDesc:
+    "Hawk JS is the ultimate tool for web developers and SEO enthusiasts. Find out how it can automates your SEO process by effortlessly submitting your sitemap, ensuring search engines like Google, Bing, Yahoo, DuckDuckGo, Yandex, Naver, Seznam.cz, and Yep stay updated with your latest content.",
+  version: "1.5.1",
+  appName: "Hawk.js Documentation",
+});

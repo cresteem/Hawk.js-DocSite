@@ -34,9 +34,12 @@ export default function Features() {
     <section className="py-14 leading-loose tracking-wide">
       <div className="max-w-screen-xl mx-auto px-4 text-center text-gray-600 md:px-8">
         <div className="max-w-2xl mx-auto">
-          <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-            Key Features of <span className="text-primary">Hawk.js</span> -
-            Boost Your <span className="text-primary">SEO with Automation</span>
+          <h3 className="text-gray-800 text-3xl font-bold sm:text-4xl">
+            Key Features of <span className="text-primary ">Hawk.js</span> -
+            Boost Your{" "}
+            <span className="text-primary font-semibold">
+              SEO with Automation
+            </span>
           </h3>
           <p className="mt-3">
             From automatic sitemap generation and multi-engine submissions to
