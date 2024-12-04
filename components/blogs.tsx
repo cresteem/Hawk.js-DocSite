@@ -25,7 +25,7 @@ export default () => {
         </p>
       </div>
       <div className="mt-5 grid gap-8 divide-y md:grid-cols-2 md:divide-y-0">
-        {posts.map((item, idx) => (
+        {/* {posts.map((item, idx) => (
           <article className="mt-5 pt-8 md:pt-0" key={idx}>
             <a href={item.href}>
               <span className="block text-gray-400 text-sm">{item.date}</span>
@@ -56,7 +56,8 @@ export default () => {
               </button>
             </a>
           </article>
-        ))}
+        ))} */}
+        <p>No blogs were added</p>
       </div>
     </section>
   );
