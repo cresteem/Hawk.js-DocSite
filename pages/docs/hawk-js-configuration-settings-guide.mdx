@@ -1,113 +1,138 @@
 ---
-title: "Customizing Hawk JS: A Guide to Configuration Settings"
-description: "Dive into the configuration settings of Hawk JS by exploring the hawk.config.json file. Learn how to customize lookup patterns, ignore specific files, set timezones, and provide sensitive information for effective sitemap generation."
-thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbnail.png
+title: "Customizing Hawk.js: A Guide to Configuration Settings"
+description: "Learn how to customize the configuration settings in Hawk.js to optimize your sitemap generation process. Understand each configuration option and how it impacts your site's SEO performance."
 ---
 
-# Configuration Settings in `hawk.config.json`
 
-## Lookup Patterns
+# Configurations
 
-```json
-"lookupPatterns": [
-    "**/*.html",
-    "**/*.htm"
-]
+## Default Template Configuration
+
+```js
+/** @type {import("@cresteem/hawk-js").hawkJsOptions} */
+const config = {
+	lookupPatterns: ["**/*.html", "**/*.htm"],
+	ignorePattern: ["node_modules/**"],
+	timeZone: "Asia/Kolkata",
+	domainName: "www.cresteem.com",
+	sitemapPath: "sitemap.xml",
+	robotPath: "robot.txt",
+	serviceAccountFile: "gserv.json",
+	ftpCredential: { username: "", password: "", hostname: "" },
+};
+
+exports.default = config;
 ```
 
-- **Description:** Specifies the patterns used by Hawk JS to search for HTML files within your project.
-- **Usage:** Customize the patterns to match the file types or locations where your HTML content resides.
+This is the default `hawk.config.js` configuration file. You can modify the values according to your website's needs. Here's a breakdown of each option:
 
-## Ignore Pattern
+---
 
-```json
-"ignorePattern": [
-    "node_modules/**"
-]
-```
+## Configuration Breakdown
 
-- **Description:** Defines a pattern to exclude specific directories or files from being included in the sitemap generation process.
-- **Usage:** Adjust the pattern to exclude folders or files that are not relevant for sitemap creation, such as `node_modules` or build directories.
+import { Table, Td, Th, Tr } from "nextra/components"
 
-## Timezone
+<Table>
+  <thead>
+    <Tr>
+      <Th>Setting</Th>
+      <Th>Default Value</Th>
+      <Th>Description</Th>
+      <Th>When It's Used</Th>
+    </Tr>
+  </thead>
+  <tbody>
+    <Tr>
+      <Td>lookupPatterns</Td>
+      <Td>["**/*.html", "**/*.htm"]</Td>
+      <Td>Patterns used to identify the HTML files for sitemap generation.</Td>
+      <Td>When defining the file types you want Hawk.js to consider for sitemap generation.</Td>
+    </Tr>
+    <Tr>
+      <Td>ignorePattern</Td>
+      <Td>["node_modules/**"]</Td>
+      <Td>Defines patterns to exclude certain files or directories from sitemap generation.</Td>
+      <Td>To exclude unnecessary files or folders (e.g., `node_modules`, build folders) from the sitemap.</Td>
+    </Tr>
+    <Tr>
+      <Td>timeZone</Td>
+      <Td>"Asia/Kolkata"</Td>
+      <Td>Timezone used for file timestamps during sitemap generation.</Td>
+      <Td>To ensure that file modification timestamps are correctly handled.</Td>
+    </Tr>
+    <Tr>
+      <Td>domainName</Td>
+      <Td>"www.cresteem.com"</Td>
+      <Td>Your website's domain name.</Td>
+      <Td>Used to construct accurate URLs for your sitemap.</Td>
+    </Tr>
+    <Tr>
+      <Td>sitemapPath</Td>
+      <Td>"sitemap.xml"</Td>
+      <Td>The filename and path where the generated sitemap will be saved.</Td>
+      <Td>Specify the output location for your sitemap file.</Td>
+    </Tr>
+    <Tr>
+      <Td>robotPath</Td>
+      <Td>"robot.txt"</Td>
+      <Td>The location of your `robots.txt` file.</Td>
+      <Td>If you have a custom `robots.txt`, specify its path here to help control crawler behavior.</Td>
+    </Tr>
+    <Tr>
+      <Td>serviceAccountFile</Td>
+      <Td>"gserv.json"</Td>
+      <Td>Points to the service account JSON file used for Google services (required for `G-Webmaster`, `G-WebMaster2`, `G-Index`).</Td>
+      <Td>Only required when using Google Webmaster Tools such as G-WebMaster, G-Index.</Td>
+    </Tr>
+    <Tr>
+      <Td>ftpCredential</Td>
+      <Td> `username`: "", `password`: "", `hostname`: "" </Td>
+      <Td>FTP credentials needed to upload the sitemap to your server.</Td>
+      <Td>Required for submitting your sitemap and hash-key token via FTP for strategy like `IndexNow`, `G-Webmaster`, or `G-WebMaster2`.</Td>
+    </Tr>
+  </tbody>
+</Table>
 
-```json
-"timeZone": "Asia/Kolkata"
-```
+---
 
-- **Description:** Sets the timezone for file modification times in Hawk JS.
-- **Usage:** Specify the timezone based on your project's location or operational requirements. This ensures accurate handling of time-related data during sitemap generation and other processes.
+## How to Configure Hawk.js
 
-## Domain Name
+1. **Create `hawk.config.js`:**
+   - Create using CLI
+   ```bash
+   hawk init
+   ```
 
-```json
-"domainName": "www.example.com"
-```
+   - Open the `hawk.config.js` file, that will be in the root directory of your project.
+  
+2. **Customize the Settings:**
+   - Modify the configuration values based on your project needs, including adjusting file patterns, time zone, and credentials.
 
-- **Description:** Specifies the domain name of your website.
-- **Usage:** Replace `www.example.com` with your actual domain name to generate accurate URLs in the sitemap.
+3. **Save Changes:**
+   - After updating the configuration, save the `hawk.config.js` file to apply the new settings to Hawk.js.
 
-## Sitemap Path
+---
 
-```json
-"sitemapPath": "sitemap.xml"
-```
+## Credential Requirements
 
-- **Description:** Defines the path and filename for the generated sitemap file.
-- **Usage:** Customize `sitemap.xml` to specify where Hawk JS should output the sitemap file within your project directory structure.
+- **FTP Credentials:** If you plan to use **IndexNow**, **G-Webmaster**, or **G-Webmaster2**, you will need to provide FTP credentials (`ftpCredential`), which include `username`, `password`, and `hostname`. This allows Hawk.js to automatically upload your generated sitemap to the server.
+  
+- **Service Account File:** This is required for integration with **G-Webmaster**, **G-Webmaster2**, or **G-Index**. The `serviceAccountFile` points to a JSON file containing your Google service credentials, like the one used to connect with the Google Search Console API.
 
-## Secret File
+Learn more in the [Google Credentials](/docs/credentials/obtaining-google-credentials-for-hawk-js) and [FTP Credentials](/docs/credentials/ftp-credentials).
 
-```json
-"secretFile": "secrets.json"
-```
+---
 
-- **Description:** Points to a JSON file containing sensitive information such as ftp `username`, `password`, and `hostname`.
-- **Usage:** Update `secrets.json` with the necessary credentials or secrets needed for authenticating with FTP server for `sitemap` and `api key` deployment.
+### Next Step ? 
+Learn About Supported Indexing [Strategies](/docs/effective-indexing-with-hawk-js/)
 
-### Secret file structure
+---
 
-```json filename="secrets.json"
- {
-	host: "ftp.hostname.com";
-	user: "username";
-	pass: "password";
-}
-```
-
-## How to Configure Hawk JS
-
-import { Steps, Tabs } from "nextra/components";
-
-<Steps>
-### Create `hawk.config.json`
-Create and open the `hawk.config.json` file in the root directory of your project.
-
-### Configure Settings
-
-Adjust the values of each configuration setting based on your project requirements and specifications.
-
-### Save Changes
-
-Save the updated `hawk.config.json` file to apply the new configuration settings to Hawk JS.
-
-</Steps>
-
-By configuring these settings in `hawk.config.json`, you can customize Hawk JS to meet the specific needs of your website, ensuring accurate sitemap generation and effective management of tasks.
-
-<br />
-<br />
-<br />
-<b>Let's see how to Obtain Credential</b>
-
-import style from "../../stylesheets/utils.module.scss";
-
-<br />
-<br />
-<br />
-<strong>Keywords:</strong>
-<ul className={style.keywords}>
-  <li>Configuration settings</li>
-  <li>hawk.config.json</li>
+**Keywords:**
+<ul className="keywords">
+  <li>hawk.config.js</li>
+  <li>configuration settings</li>
+  <li>SEO optimization</li>
   <li>customization</li>
+  <li>FTP credentials</li>
 </ul>

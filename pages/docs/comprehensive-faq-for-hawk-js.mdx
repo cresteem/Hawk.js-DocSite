@@ -1,248 +1,941 @@
----
-title: "Exploring Hawk JS: Frequently Asked Questions"
-description: "Get answers to the most frequently asked questions about Hawk JS, covering topics such as installation, configuration, supported search engines, sitemap generation, and more. This FAQ guide will enhance your understanding and effective usage of this powerful SEO tool."
-thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbnail.png
----
-
-# Frequently Asked Questions
-
 <details>
-  <summary>What is Hawk JS?</summary>
+  <summary>What is Hawk.js?</summary>
   <p>
-    Hawk JS is a tool for generating and deploying **sitemaps** and **update
-    content link** to search engines for websites. It supports automatic
-    **submission** to search engines such as Google, Bing, Yahoo, Yandex, and
-    others, ensuring your website content is indexed quickly and efficiently.
+    Hawk.js is an advanced, open-source sitemap generator and SEO automation tool that simplifies the SEO process for web developers, SEO professionals, and digital marketers. It automates sitemap creation and submission to major search engines like Google, Bing, Yahoo, Yandex, and others supporting IndexNow.
   </p>
 </details>
 
 <details>
-  <summary>How do I install Hawk JS?</summary>
+  <summary>What are the key benefits of using Hawk.js?</summary>
   <p>
-    You can install Hawk JS using npm or yarn. Run{" "}
-    <code>`npm install @cresteem/hawk-js`</code> or{" "}
-    <code>`yarn add @cresteem/hawk-js`</code> in your project directory.
+    Hawk.js offers several key benefits:
+    - **Automated Sitemap Creation**: Easily generate and maintain sitemaps with minimal manual effort.
+    - **Optimized Search Engine Indexing**: Ensure your website is indexed quickly and accurately, improving its visibility and ranking.
+    - **Streamlined Submissions**: Automates the process of submitting your sitemaps to major search engines, resulting in faster indexing.
   </p>
 </details>
 
 <details>
-  <summary>How do I configure Hawk JS for my project?</summary>
+  <summary>What are the key features of Hawk.js?</summary>
   <p>
-    You can configure Hawk JS by creating a <code>`hawk.config.json`</code> file
-    in the root directory of your project. This file includes settings such as
-    lookup patterns, ignore patterns, timezone, domain name, sitemap path, robot
-    path, and secret file.
+    Some of the key features of Hawk.js include:
+    - **Automated Sitemap Generation**: Automatically generate sitemaps with ease, saving time and reducing manual work.
+    - **SEO Optimization**: Hawk.js helps ensure that your site is correctly indexed by search engines, boosting visibility and improving rankings.
+    - **Real-Time Sitemap Updates**: Keep your sitemaps current, reflecting the latest changes to your website content.
+    - **Highly Customizable Configurations**: Tailor Hawk.js to meet your specific needs with a variety of configuration options.
+    - **Multi-Search Engine Support**: Submit your sitemaps to multiple search engines such as Google, Bing, Yahoo, Yandex, DuckDuckGo, and others supporting IndexNow for global reach.
   </p>
 </details>
 
 <details>
-  <summary>Which search engines are supported by Hawk JS?</summary>
+  <summary>Why should I use Hawk.js?</summary>
   <p>
-    Hawk JS supports submission to multiple search engines, including
-    **Google**, **Bing**, **Yahoo**, **Yandex**, and others that support the
-    IndexNow protocol.
+    Hawk.js helps you:
+    - **Save Time and Effort**: Automate repetitive tasks like generating and submitting sitemaps, so you can focus on more important tasks.
+    - **Enhance Your SEO Performance**: Ensure faster and more accurate indexing, improving your site’s visibility and ranking in search results.
+    - **Full Customization**: Fine-tune your sitemap and submission strategies based on your needs.
+    - **Stay Up-to-Date with SEO Standards**: Hawk.js supports IndexNow, ensuring your website is competitive and adheres to the latest SEO trends.
   </p>
 </details>
 
 <details>
-  <summary>What are lookup and ignore patterns in Hawk JS?</summary>
+  <summary>What’s new in Hawk.js version 1.5.0?</summary>
   <p>
-    Lookup patterns specify the files to be included when generating the
-    sitemap, while ignore patterns specify the files to be excluded. These
-    patterns help customize which parts of your website are indexed.
+    The latest version of Hawk.js (1.5.0) includes several updates:
+    - **Official Hawk.js Logo**: A new logo has been integrated for better brand recognition.
+    - **TypeScript Support**: The `init` command now supports TypeScript for easier configuration management.
+    - **Updated Configuration Format**: The config format has moved from JSON to JavaScript for better flexibility.
+    - **Expanded Search Engine Strategies**: Additional strategies like Google Webmaster Tools and IndexNow have been added.
+    - **Enhanced Performance**: Performance optimizations have been made for improved speed and usability.
   </p>
 </details>
 
 <details>
-  <summary>When should I use the Google Indexing API strategy?</summary>
+  <summary>Is Hawk.js free to use?</summary>
   <p>
-    The Google Indexing API strategy is ideal for sites with frequently changing
-    content, such as **job postings** or **live stream events**. This strategy
-    allows you to notify Google directly when pages are added or removed,
-    ensuring timely updates to search results.
+    Yes, Hawk.js is an open-source project released under the **Apache 2.0 License**. You can freely use and modify it for both personal and commercial purposes. However, make sure to provide proper attribution as per the license terms.
   </p>
 </details>
 
 <details>
-  <summary>How do I generate a sitemap using Hawk JS?</summary>
+  <summary>Who developed Hawk.js?</summary>
   <p>
-    You can generate a sitemap by running the Hawk JS CLI command{" "}
-    <code>`hawk genmap`</code>. This will create a <code>sitemap.xml</code> file
-    based on your configuration settings.
+    Hawk.js was developed by [Darsan](https://darsan.in), founder of [Cresteem](https://cresteem.com/), a web development company. It is an open-source project designed to help web developers and SEO professionals streamline SEO tasks.
+  </p>
+</details>
+
+
+<details>
+  <summary>What are the prerequisites to use Hawk.js?</summary>
+  <p>
+    To use Hawk.js, you need the following prerequisites:
+    - **Node.js (v18.0 or later)** installed on your system. You can download it from [Node.js website](https://nodejs.org/en/download).
+    - **Internet connection** to install Hawk.js from the npm registry.
   </p>
 </details>
 
 <details>
-  <summary>Can I exclude certain files from the sitemap?</summary>
+  <summary>How do I install Hawk.js?</summary>
   <p>
-    Yes, you can exclude certain files from the sitemap by specifying ignore
-    patterns in the <code>`hawk.config.json`</code> file. These patterns will be
-    used to filter out files that should not be included in the sitemap.
+    You can install Hawk.js using your preferred package manager. Here’s how:
+    - Using **Yarn**:
+    ```bash
+    yarn add @cresteem/hawk-js -D
+    ```
+    - Using **npm**:
+    ```bash
+    npm install @cresteem/hawk-js -D
+    ```
   </p>
 </details>
 
 <details>
-  <summary>What is the purpose of the `getLastRunTimeStamp` function?</summary>
+  <summary>How do I initiate the configuration file?</summary>
   <p>
-    The `getLastRunTimeStamp` function retrieves the timestamp of the last
-    execution or submission. This is useful for filtering updated routes from
-    non-updated routes using the lastRunTimeStamp.
+    To create a default configuration file, run the following command:
+    ```bash
+    hawk init
+    ```
+    This will generate a `hawk.config.js` file in your project directory.
   </p>
 </details>
 
 <details>
-  <summary>How do I use the IndexNow strategy with Hawk JS?</summary>
+  <summary>How do I customize my configuration file?</summary>
   <p>
-    To use the IndexNow strategy, configure your routes and run hawk with the
-    `IndexNow` strategy. This will rapidly index your new or updated content
-    with search engines that support IndexNow, such as Bing, Yahoo, Yandex, and
-    Yep.
+    After generating the `hawk.config.js` file, open it and define the patterns you wish to include or exclude. You can also customize additional settings as per your project’s requirements.
+    Learn more in the [Configuration Guide](/docs/hawk-js-configuration-settings-guide).
   </p>
 </details>
 
 <details>
-  <summary>
-    What is the difference between Google Search Console API and Google Indexing
-    API?
-  </summary>
+  <summary>What credentials do I need for specific strategies?</summary>
   <p>
-    The Google Search Console API is used for submitting sitemaps to Google and
-    checking their status, while the Google Indexing API is specifically for
-    notifying Google about updates to pages with certain types of content, like
-    job postings or live stream events.
+    For certain indexing strategies, you will need to provide specific credentials:
+    - **Google Webmaster Tools credentials** for `G-Webmaster`, `G-Webmaster2`, and `G-Index` strategies.
+    - **FTP credentials** for the `IndexNow` strategy.
+    Be sure to input these credentials in the configuration file based on the strategy you choose. 
+    Learn more about credentials in the [Google Credentials](/docs/credentials/obtaining-google-credentials-for-hawk-js) and [FTP Credentials](/docs/credentials/ftp-credentials) sections.
   </p>
 </details>
 
 <details>
-  <summary>Can I check the status of my sitemap submissions?</summary>
+  <summary>How do I run Hawk.js with a specific strategy?</summary>
   <p>
-    Yes, you can check the status of your sitemap submissions to Google Search
-    Console using the `lastSubmissionStatusGAPI` function provided by Hawk JS.
-    This function retrieves and displays the status of the last submission.
+    To run Hawk.js with a specific strategy, use the command:
+    ```bash
+    hawk --strategy <number>
+    ```
+    Where `<number>` represents the following strategies:
+    - `1` for `Index-Now`
+    - `2` for `G-Webmaster`
+    - `3` for `G-Webmaster2`
+    - `4` for `G-Index`
+    
+    You can also use optional parameters like `--include`, `--exclude`, and `--prettify`.
+    For more information, refer to the [CLI References](/docs/enhancing-seo-with-hawk-js-cli).
   </p>
 </details>
 
 <details>
-  <summary>How do I generate and upload a sitemap using the CLI?</summary>
+  <summary>What’s next after installing and configuring Hawk.js?</summary>
   <p>
-    To generate and upload a sitemap using the CLI, run{" "}
-    <code>`hawk genmap -c`</code>. This will generate the sitemap and upload it
-    to Google Search Console.
+    After setting up Hawk.js, the next step is to customize it for your project. Visit the [Configuration Details](/docs/hawk-js-configuration-settings-guide) page to:
+    - Learn how to edit the `hawk.config.js` file.
+    - Define URLs to include or exclude from the sitemap.
+    
+    This will ensure Hawk.js is tailored to your SEO needs and runs smoothly for your website.
   </p>
 </details>
 
 <details>
-  <summary>What are the supported strategies in Hawk JS?</summary>
+  <summary>What is the default template configuration for Hawk.js?</summary>
   <p>
-    Hawk JS supports several strategies for sitemap generation and submission:
-    `IndexNow`, `GIndex`, `GWebmaster`, and `GWebmaster2`. Each strategy serves
-    different purposes based on your content and target search engines.
+    The default configuration for Hawk.js is defined in the `hawk.config.js` file. Here's the template:
+    ```js
+    /** @type {import("@cresteem/hawk-js").hawkJsOptions} */
+    const config = {
+      lookupPatterns: ["**/*.html", "**/*.htm"],
+      ignorePattern: ["node_modules/**"],
+      timeZone: "Asia/Kolkata",
+      domainName: "www.cresteem.com",
+      sitemapPath: "sitemap.xml",
+      robotPath: "robot.txt",
+      serviceAccountFile: "gserv.json",
+      ftpCredential: { username: "", password: "", hostname: "" },
+    };
+
+    exports.default = config;
+    ```
+    You can customize this template to suit your website’s SEO needs.
   </p>
 </details>
 
 <details>
-  <summary>How does Hawk JS handle route changes?</summary>
+  <summary>What do the configuration options in the `hawk.config.js` file mean?</summary>
   <p>
-    Hawk JS identifies routes with changes since the last submission timestamp
-    using given inclusion and exclusion patterns. This ensures only updated
-    content is submitted for indexing.
+    Here's a breakdown of the default configuration options:
+    <table>
+      <thead>
+        <tr>
+          <th>Setting</th>
+          <th>Default Value</th>
+          <th>Description</th>
+          <th>When It's Used</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>lookupPatterns</td>
+          <td>["**/*.html", "**/*.htm"]</td>
+          <td>Patterns to identify HTML files for sitemap generation.</td>
+          <td>When defining the file types to be included in the sitemap.</td>
+        </tr>
+        <tr>
+          <td>ignorePattern</td>
+          <td>["node_modules/**"]</td>
+          <td>Defines patterns to exclude certain files or directories from the sitemap.</td>
+          <td>When excluding unnecessary files, such as `node_modules` or build folders.</td>
+        </tr>
+        <tr>
+          <td>timeZone</td>
+          <td>"Asia/Kolkata"</td>
+          <td>Timezone for file timestamps during sitemap generation.</td>
+          <td>To ensure file modification timestamps are accurate.</td>
+        </tr>
+        <tr>
+          <td>domainName</td>
+          <td>"www.cresteem.com"</td>
+          <td>Your website’s domain name.</td>
+          <td>To generate accurate URLs for the sitemap.</td>
+        </tr>
+        <tr>
+          <td>sitemapPath</td>
+          <td>"sitemap.xml"</td>
+          <td>The location where the generated sitemap will be saved.</td>
+          <td>To specify the output path for the sitemap.</td>
+        </tr>
+        <tr>
+          <td>robotPath</td>
+          <td>"robot.txt"</td>
+          <td>Location of your `robots.txt` file.</td>
+          <td>To specify custom `robots.txt` file path for controlling crawler behavior.</td>
+        </tr>
+        <tr>
+          <td>serviceAccountFile</td>
+          <td>"gserv.json"</td>
+          <td>Points to the service account JSON file used for Google services (for `G-Webmaster`, `G-WebMaster2`, `G-Index`).</td>
+          <td>Required for Google Webmaster Tools integration.</td>
+        </tr>
+        <tr>
+          <td>ftpCredential</td>
+          <td>username: "", password: "", hostname: ""</td>
+          <td>FTP credentials needed to upload the sitemap to your server.</td>
+          <td>Required for submitting sitemaps using FTP for strategies like `IndexNow`, `G-Webmaster`, `G-WebMaster2`.</td>
+        </tr>
+      </tbody>
+    </table>
   </p>
 </details>
 
 <details>
-  <summary>How can I update the sitemap without uploading it?</summary>
+  <summary>How do I configure Hawk.js?</summary>
   <p>
-    You can update the sitemap without uploading it by setting the `donotUpload`
-    option to `true` in your configuration or CLI command. This will generate
-    the sitemap but skip the upload step.
+    To configure Hawk.js, follow these steps:
+    1. **Create `hawk.config.js`:**
+       - Run the CLI command:
+         ```bash
+         hawk init
+         ```
+       - This will generate the `hawk.config.js` file in your project's root directory.
+    
+    2. **Customize the Settings:**
+       - Modify the configuration values to meet your project’s requirements (e.g., file patterns, time zone, credentials).
+    
+    3. **Save the Changes:**
+       - After editing the `hawk.config.js` file, save it to apply the new configuration.
   </p>
 </details>
 
 <details>
-  <summary>What is the purpose of the `makeRobot` function?</summary>
+  <summary>What credentials are required for certain indexing strategies?</summary>
   <p>
-    The `makeRobot` function generates a `robots.txt` file that helps search
-    engines understand which parts of your site should be crawled and indexed.
+    For specific indexing strategies, the following credentials are required:
+    - **FTP Credentials**: Required for strategies like **IndexNow**, **G-Webmaster**, and **G-WebMaster2**. You will need to provide `username`, `password`, and `hostname` for FTP access to upload the sitemap.
+    - **Service Account File**: Required for **G-Webmaster**, **G-WebMaster2**, and **G-Index** strategies. This JSON file contains your Google service credentials to integrate with Google Search Console.
+    
+    Learn more in the [Google Credentials](/docs/credentials/obtaining-google-credentials-for-hawk-js) and [FTP Credentials](/docs/credentials/ftp-credentials) sections.
   </p>
 </details>
 
 <details>
-  <summary>Can Hawk JS be used with any website?</summary>
+  <summary>What is the next step after configuring Hawk.js?</summary>
   <p>
-    Yes, Hawk JS can be used with any website, As long as you have node-js
-    environment and can configure the necessary settings and run the CLI
-    commands, Hawk JS will work for your site.
+    Once you've configured Hawk.js, the next step is to explore supported indexing strategies. Learn about these strategies in the [Effective Indexing with Hawk.js](/docs/effective-indexing-with-hawk-js/) section to optimize your website’s SEO and indexing process.
+  </p>
+</details>
+
+
+<details>
+  <summary>What is IndexNow and how does it work with Hawk.js?</summary>
+  <p>
+    **IndexNow** is a protocol designed to notify search engines instantly when new or updated content is available on your website, significantly speeding up the indexing process. Hawk.js integrates with IndexNow to automate the process of notifying search engines like **Bing**, **Yahoo**, **Yandex**, and **DuckDuckGo** about content changes on your website.
+
+    Here's how it works:
+    1. **Triggering Hawk.js with IndexNow**: Hawk.js checks for updates since the last execution and identifies any changed files.
+    2. **Tracking Updates**: Only files that have been updated are marked for indexing.
+    3. **Authentication**: Hawk.js generates a unique hash key and stores it on an FTP server, which is used for authenticating the request with the **IndexNow API**.
+    4. **API Request**: Hawk.js sends a request to the IndexNow API with a list of updated files.
+    5. **Search Engine Indexing**: Supported search engines crawl the updated files, ensuring that the content is quickly indexed and made available in search results.
+
+    For more details, refer to the [IndexNow website](https://www.indexnow.org/).
   </p>
 </details>
 
 <details>
-  <summary>
-    Why are FTP credentials necessary for submitting a sitemap when using
-    gWebmaster or gWebmaster2 strategies?
-  </summary>
+  <summary>When should I use IndexNow with Hawk.js?</summary>
   <p>
-    FTP (File Transfer Protocol) credentials such as hostname, username, and
-    password are required when using `gWebmaster` or `gWebmaster2` strategies in
-    Hawk JS to submit the sitemap directly to FTP server for Google Search
-    Console to utillise and index your website.
+    **IndexNow** is most beneficial when:
+    - You need **rapid indexing** of newly updated or added content, such as product pages, blog posts, or news articles.
+    - Your website’s content changes frequently, and you want real-time updates in search engines.
+    - You want to ensure your website is indexed **instantly** without relying on traditional crawling methods, which can take time.
+
+    Make sure to verify that the search engines you are targeting support **IndexNow**, as it is supported by **Bing**, **Yahoo**, **Yandex**, **Sheznam.cz**, **Naver**, **Yep**, and **DuckDuckGo**.
   </p>
 </details>
 
 <details>
-  <summary>Where should I store my FTP credentials for Hawk JS?</summary>
+  <summary>How do I use IndexNow with Hawk.js via CLI?</summary>
   <p>
-    FTP credentials should be securely stored in the `secrets.json` file should
-    be located in your project's root directory. This file is used by Hawk
-    JS(`yarn hawk secret`) to set credentials to system environment so that can
-    used when need to access and authenticate with the FTP server when uploading
-    the sitemap.
+    To use **IndexNow** with Hawk.js, follow these steps:
+    ### Prerequisites:
+    - **FTP Server**: Set up an FTP server to store the **hash key** generated by Hawk.js for authentication.
+    - **Configuration**: Ensure that your `hawk.config.js` includes the correct FTP credentials and paths.
+
+    ### Steps:
+    1. **Configure Your FTP Server**:
+       Set up your FTP server to store the **hash key** file, which is used for authentication with the **IndexNow API**.
+    
+    2. **Run Hawk.js with IndexNow**:
+       To trigger the **IndexNow** strategy, run the following command in your terminal:
+       ```bash
+       hawk --strategy 1
+       ```
+
+    3. **Monitor Updates**:
+       Hawk.js will track the modification timestamps of files and send only the updated or newly added files to the **IndexNow API**.
+
+    4. **Verify Successful Indexing**:
+       Once the **IndexNow API** processes the request and crawls the updated pages, your content will be indexed by the search engines, ensuring it's up-to-date in search results.
+
+    Ensure that your FTP credentials are correctly configured in the `hawk.config.js` file, and that your FTP server is ready to store the generated hash key.
   </p>
 </details>
 
 <details>
-  <summary>
-    Why is a Google service account key necessary for GIndex and GWebmaster
-    strategies?
-  </summary>
+  <summary>What should I consider when using IndexNow with Hawk.js?</summary>
   <p>
-    A Google service account key is required for GIndex and GWebmaster
-    strategies in Hawk JS to authenticate and access the Google APIs for
-    indexing and sitemap submission. This key ensures secure communication
-    between Hawk JS and Google services.
+    Here are a few key considerations for using **IndexNow** with Hawk.js:
+    - **FTP Credentials**: Ensure your FTP credentials are configured correctly in the `hawk.config.js` file to enable communication with your FTP server.
+    - **Authorization**: The first time you trigger Hawk.js with **IndexNow**, a unique hash key will be generated and stored on your FTP server for authentication with the **IndexNow API**.
+    - **Search Engine Support**: Double-check that the search engines you want to target support the **IndexNow** protocol, as not all search engines may be compatible.
   </p>
 </details>
 
 <details>
-  <summary>Where do I acquire a Google service account key?</summary>
+  <summary>What is the difference between GWebMaster and GWebMaster2 in Hawk.js?</summary>
   <p>
-    You can acquire a Google service account key from the Google Cloud Console.
-    Navigate to the IAM & Admin section, select Service accounts, and create a
-    new service account. Download the JSON key file provided, which contains
-    your service account credentials. It should be stored as `gserv.json` in
-    project root directory.
+    Both **GWebMaster** and **GWebMaster2** are strategies in Hawk.js for submitting sitemaps to Google via the **Google Webmaster API**. However, there are some key differences:
+    
+    - **GWebMaster**: Submits the generated sitemap to Google Search Console, enabling Google to crawl and index the content.
+    - **GWebMaster2**: Includes all the functionality of GWebMaster but with additional features, such as fetching **feedback** from Google Search Console, including indexing status (number of indexed pages), crawl errors, and the last crawl timestamp.
+
+    The key difference is that **GWebMaster2** provides **detailed feedback** on the indexing status and any issues Google encountered during the crawl, while **GWebMaster** only handles sitemap submission.
   </p>
 </details>
 
 <details>
-  <summary>
-    Do I need to enable specific APIs in Google Cloud Console for Hawk JS?
-  </summary>
+  <summary>What are the requirements for using Google Webmaster (GWebMaster & GWebMaster2) with Hawk.js?</summary>
   <p>
-    Yes, you need to enable specific APIs such as the `Google Indexing API` and
-    `Google Search Console API` in the Google Cloud Console for Hawk JS to
-    interact with these services. Ensure that the required APIs are enabled and
-    access permissions are correctly configured.
+    To use **GWebMaster** or **GWebMaster2** strategies with Hawk.js, you need the following:
+    
+    - **FTP Credentials**: These are necessary to upload the sitemap to your FTP server, where Google Search Console can access it.
+    - **Google Service Account File (`gserv.json`)**: This file is required to authenticate Hawk.js with Google Search Console for both **GWebMaster** and **GWebMaster2** strategies.
+
+    Ensure that both sets of credentials are configured properly in your `hawk.config.js` file for the integration to work correctly.
   </p>
 </details>
 
-import style from "../../stylesheets/utils.module.scss";
+<details>
+  <summary>How do I set up Hawk.js to use Google Webmaster (GWebMaster & GWebMaster2) strategies?</summary>
+  <p>
+    Follow these steps to set up **GWebMaster** or **GWebMaster2** strategies with Hawk.js:
 
-<br />
-<br />
-<br />
-<strong>Keywords:</strong>
-<ul className={style.keywords}>
-  <li>Integration process</li>
-  <li>strategies and techniques</li>
-  <li>website optimization</li>
-</ul>
+    1. **Generate Google Service Account File**:
+       - Visit the [Google Credentials](/docs/credentials/obtaining-google-credentials-for-hawk-js) page for detailed instructions on obtaining a **Google Service Account File** (`gserv.json`).
+
+    2. **Configure Hawk.js with Service Account and FTP Credentials**:
+       - Update your `hawk.config.js` file with the Google Service Account File and FTP credentials:
+
+       ```js
+       serviceAccountFile: "gserv.json",
+       ftpCredential: { 
+         username: "your-ftp-username", 
+         password: "your-ftp-password", 
+         hostname: "your-ftp-hostname" 
+       }
+       ```
+
+    3. **Run Hawk.js with GWebMaster or GWebMaster2 Strategy**:
+       - To trigger the **GWebMaster** strategy, run the following command:
+
+       ```bash
+       hawk --strategy 2
+       ```
+
+       - To trigger the **GWebMaster2** strategy, run:
+
+       ```bash
+       hawk --strategy 3
+       ```
+
+    4. **Monitor Submission and Indexing Status**:
+       - After submitting the sitemap, you can check your **Google Search Console** for updates on indexing and crawl status.
+       - With **GWebMaster2**, you can also receive detailed feedback, such as the number of indexed pages and any crawl errors.
+  </p>
+</details>
+
+<details>
+  <summary>What are the benefits of using Google Webmaster API with Hawk.js?</summary>
+  <p>
+    Using the **Google Webmaster API** (through **GWebMaster** and **GWebMaster2**) with Hawk.js offers several benefits:
+    
+    - **Automated Sitemap Submission**: Automatically generate and submit your sitemap to Google Search Console, eliminating the need for manual intervention.
+    - **Faster Indexing**: Ensure that your content is indexed more quickly by Google, improving SEO performance.
+    - **Detailed Crawl Feedback**: With **GWebMaster2**, you can receive valuable feedback about your site’s indexing status, crawl errors, and more.
+    - **Error Monitoring**: Use the feedback from **GWebMaster2** to identify and resolve crawl issues, improving your site's visibility in search results.
+
+    These features help streamline the process of managing your website's SEO and indexing status with Google Search Console.
+  </p>
+</details>
+
+<details>
+  <summary>What is G-Index in Hawk.js?</summary>
+  <p>
+    **G-Index** is a strategy in Hawk.js that utilizes the **Google Indexing API** to notify Google about new or updated content on your website. This strategy is particularly useful for ensuring that time-sensitive or frequently updated pages, such as job postings, livestream events, and breaking news, are indexed quickly by Google. By using G-Index, Hawk.js allows faster indexing and better search visibility for such content.
+  </p>
+</details>
+
+<details>
+  <summary>When should I use G-Index with Hawk.js?</summary>
+  <p>
+    G-Index is most effective in the following scenarios:
+    
+    - **Time-Sensitive Content**: For content that needs immediate visibility, like **job postings** or **livestream videos**.
+    - **Short-Lived Content**: For content with a brief relevance period, such as promotions or temporary events.
+    - **Frequently Updated Content**: For dynamic websites that require continuous updates, ensuring the latest content is indexed efficiently.
+  </p>
+</details>
+
+<details>
+  <summary>How does G-Index work in Hawk.js?</summary>
+  <p>
+    Here's how **G-Index** works in Hawk.js:
+    
+    1. **File Tracking**: Hawk.js checks the last run timestamps and compares them with file modification times. It then notifies Google of any updated files.
+       - On the **first run**, all files matching the defined patterns are included.
+       - On subsequent runs, only newly updated or added files are submitted.
+    
+    2. **Authentication**: The **Google Indexing API** requires authentication via a **service account JSON file**, which must be set up and configured in Hawk.js.
+    
+    3. **API Submission**: After collecting updated routes, Hawk.js submits them to the **Google Indexing API**, prompting Google to crawl and index those URLs faster.
+  </p>
+</details>
+
+<details>
+  <summary>What are the requirements for using G-Index in Hawk.js?</summary>
+  <p>
+    To use **G-Index** with Hawk.js, the following are required:
+    
+    - **Service Account File**: This file is necessary for authenticating the API requests. You can obtain it from the Google Cloud Console. Detailed steps can be found in our [Google Credentials Setup Guide](/docs/credentials/obtaining-google-credentials-for-hawk-js).
+  </p>
+</details>
+
+<details>
+  <summary>How do I use G-Index with Hawk.js?</summary>
+  <p>
+    To use **G-Index** in Hawk.js, follow these steps:
+    
+    1. **Update Configuration**: Modify your `hawk.config.js` file with the necessary file patterns and service account details:
+
+    ```js
+    /** @type {import("@cresteem/hawk-js").hawkJsOptions} */
+    const config = {
+        lookupPatterns: ["**/*.html", "**/*.htm"],
+        ignorePattern: ["node_modules/**"],
+        domainName: "www.example.com",
+        serviceAccountFile: "path/to/your-service-account.json",
+    };
+    exports.default = config;
+    ```
+
+    2. **Run Hawk.js with G-Index Strategy**: Trigger the **G-Index** strategy by running the following command:
+
+    ```bash
+    hawk --strategy 4
+    ```
+
+    3. **Monitor API Responses**: After submission, check your CLI logs for details on the routes submitted and confirm indexing success via **Google Search Console**.
+  </p>
+</details>
+
+<details>
+  <summary>Can you give some examples of use cases for G-Index?</summary>
+  <p>
+    Here are some practical use cases for **G-Index**:
+    
+    - **Job Portals**: Automatically notify Google when new job listings are posted, ensuring quick indexing of time-sensitive job data.
+    - **Livestream Platforms**: Use the **G-Index** strategy to ensure Google indexes event pages with `BroadcastEvent` data efficiently, so users can find them in search results as soon as the event starts.
+    - **News Websites**: Submit updates for breaking news articles, ensuring that the latest headlines are indexed immediately for visibility.
+  </p>
+</details>
+
+<details>
+  <summary>What are the prerequisites to obtain Google credentials for Hawk.js?</summary>
+  <p>
+    Before you begin obtaining Google service account credentials for Hawk.js, make sure you have:
+    - A Google account
+    - Access to the Google Cloud Console
+    - Admin access to your Google Search Console property
+  </p>
+</details>
+
+<details>
+  <summary>Can you walk me through the steps to obtain Google service account credentials for Hawk.js?</summary>
+  <p>
+    Here is a detailed, step-by-step guide to obtain Google service account credentials for Hawk.js:
+
+    <strong>Step 1: Create a New Project in Google Cloud Console</strong>
+    1. Open the [Google Cloud Console](https://console.cloud.google.com/).
+    2. Create a new project by clicking the project dropdown at the top left and selecting "New Project".
+    3. Enter a name for your project and click "Create".
+
+    <strong>Step 2: Enable the Required APIs</strong>
+    1. Go to `APIs & Services` > `Dashboard` in the left-hand navigation menu.
+    2. Enable the **Indexing API** by searching for it, clicking on it, and selecting `Enable`.
+    3. Similarly, enable the **Search Console API** by searching for it and selecting `Enable`.
+
+    <strong>Step 3: Create a Service Account</strong>
+    1. Navigate to `IAM & Admin` > `Service Accounts`.
+    2. Click on `+ Create Service Account`.
+    3. Add a name and description for the service account, then click `Create`.
+    4. Grant the service account the `Owner` role and click `Continue`, then `Done`.
+
+    <strong>Step 4: Generate and Download the JSON Key</strong>
+    1. Find the service account you created and click on its email.
+    2. Go to the `Keys` tab, then click `Add Key` > `Create New Key`.
+    3. Select the `JSON` option and click `Create`. This will download a JSON key file.
+    4. Store this file securely as `gserv.json` in your web project root directory.
+
+    <strong>Step 5: Add Service Account to Google Search Console</strong>
+    1. Go to [Google Search Console](https://search.google.com/search-console/).
+    2. Select your property and go to `Settings` > `Users and permissions` > `Add user`.
+    3. Enter the email address of your service account and set the role to `Owner`, then click `Add`.
+  </p>
+</details>
+
+<details>
+  <summary>What should I do after obtaining the service account credentials?</summary>
+  <p>
+    Once you have completed the steps to obtain your **Google service account credentials**, store the downloaded JSON key file (`gserv.json`) securely in your web project's root directory. This file will be used by Hawk.js for authenticating API requests to both the **Google Indexing API** and **Google Search Console API**.
+    
+    For detailed assistance, refer to the [Google Cloud Console Documentation](https://cloud.google.com/docs) and [Google Search Console Help](https://support.google.com/webmasters/).
+  </p>
+</details>
+
+<details>
+  <summary>What are the key considerations when setting up FTP credentials for Hawk.js?</summary>
+  <p>
+    When configuring FTP credentials for Hawk.js, keep these important considerations in mind:
+    - **FTP Root Directory:** The FTP root directory must align with the web server's root directory (e.g., `public_html` or `/var/www/html`).
+    - **No Directory Navigation:** Hawk.js does not navigate between directories on your FTP server. It only uploads files directly to the home (primary) directory of the FTP connection.
+  </p>
+</details>
+
+<details>
+  <summary>What are the steps to set up an FTP server for Hawk.js?</summary>
+  <p>
+    Here are the steps to set up an FTP server and integrate it with Hawk.js:
+
+    <strong>Step 1: Check FTP Support on Your Hosting Plan</strong>
+    - Ensure that your hosting plan includes FTP support by reviewing your plan's features or contacting your hosting provider.
+
+    <strong>Step 2: Set Up an FTP Account</strong>
+    - Use your hosting provider’s control panel (e.g., **cPanel**, **HPanel** for Hostinger, or a custom dashboard) to create an FTP account.
+
+    <strong>Step 3: Configure FTP Credentials</strong>
+    - When setting up your FTP account, define these credentials:
+      - **Hostname:** The domain name or IP address of the FTP server (e.g., `ftp.example.com` or `192.168.1.1`).
+      - **Username:** The username for your FTP account.
+      - **Password:** The password for your FTP account.
+  </p>
+</details>
+
+<details>
+  <summary>How do I integrate FTP credentials into Hawk.js?</summary>
+  <p>
+    To integrate FTP credentials into Hawk.js, update your `hawk.config.js` file with the necessary FTP details:
+
+    ```js
+    /** @type {import("@cresteem/hawk-js").hawkJsOptions} */
+    const config = {
+        ftpCredential: {
+            username: "your-ftp-username",
+            password: "your-ftp-password",
+            hostname: "ftp.example.com",
+        },
+    };
+    exports.default = config;
+    ```
+
+    This will ensure that Hawk.js can use the FTP credentials for uploading files such as sitemaps and authorization files.
+  </p>
+</details>
+
+<details>
+  <summary>What are some best practices for FTP configuration?</summary>
+  <p>
+    Follow these best practices when configuring FTP for Hawk.js:
+    1. **Match FTP and Web Server Roots:** Ensure the **FTP root directory** matches the **web server's root directory** (e.g., `/public_html`).
+    2. **Secure Your Credentials:** Store your FTP credentials securely and restrict access to the `hawk.config.js` file to prevent unauthorized access.
+    3. **Verify File Uploads:** After setting up Hawk.js and running a strategy that requires FTP (e.g., **IndexNow**), verify that the files are correctly uploaded to the FTP server's root directory.
+  </p>
+</details>
+
+<details>
+  <summary>What are some common hosting scenarios for FTP support?</summary>
+  <p>
+    Here's a table of common hosting providers and their FTP support:
+
+    | Hosting Provider        | FTP Availability              | Control Panel       |
+    |-------------------------|-------------------------------|---------------------|
+    | [Hostinger](https://hostinger.com/) | Yes                        | HPanel              |
+    | [Bluehost](https://www.bluehost.in/)  | Yes                        | cPanel              |
+    | [GoDaddy](https://www.godaddy.com/)   | Yes                        | Custom Dashboard    |
+    | [AWS EC2](https://aws.amazon.com/)    | No (Manual Setup Required) | AWS Management Console |
+    | [Google Cloud](https://cloud.google.com/) | No (Manual Setup Required) | Google Cloud Console |
+  </p>
+</details>
+
+<details>
+  <summary>How do I get started with the Hawk.js CLI?</summary>
+  <p>
+    To get started with the Hawk.js CLI, run the following command:
+    
+    ```bash
+    hawk [options] [command]
+    ```
+
+    Ensure Hawk.js is installed either globally or locally in your project. If you're not sure, install it globally using:
+    
+    ```bash
+    npm install -g @cresteem/hawk-js
+    ```
+  </p>
+</details>
+
+<details>
+  <summary>What global options are available in the Hawk.js CLI?</summary>
+  <p>
+    Here are the available global options in the Hawk.js CLI:
+
+    | Option         | Alias | Default                        | Description                                                                 |
+    |----------------|-------|--------------------------------|-----------------------------------------------------------------------------|
+    | `--strategy`   | `-s`  | (Required)                    | The indexing strategy to use (see supported strategies below).              |
+    | `--include`    | `-i`  | Configured lookup patterns    | Specify file patterns to include in sitemap generation.                    |
+    | `--exclude`    | `-e`  | Configured ignore patterns    | Specify file patterns to exclude from sitemap generation.                  |
+    | `--prettify`   | `-p`  | `false`                       | Prettify the output of the generated `sitemap.xml` file for better readability. |
+  </p>
+</details>
+
+<details>
+  <summary>What strategies does the Hawk.js CLI support?</summary>
+  <p>
+    The Hawk.js CLI supports the following strategies:
+
+    | Strategy Number | Strategy Name | Description                                                                 |
+    |------------------|---------------|-----------------------------------------------------------------------------|
+    | `1`             | IndexNow      | Notify search engines like Bing and Yandex about content changes.          |
+    | `2`             | GWebMaster    | Generate and submit sitemaps to Google Search Console.                     |
+    | `3`             | GWebMaster2   | Generate, submit sitemaps, and receive feedback from Google Search Console.|
+    | `4`             | GIndex        | Push content updates directly to Google via the Indexing API.              |
+  </p>
+</details>
+
+<details>
+  <summary>How do I generate a sitemap using the Hawk.js CLI?</summary>
+  <p>
+    Use the `genmap` command to generate a sitemap based on your specified patterns. You can also upload it to an FTP server using the `--commit` option:
+
+    Example for generating a sitemap:
+    ```bash
+    hawk genmap -i "src/**/*.html" -e "node_modules/**"
+    ```
+
+    Example for generating and uploading a sitemap:
+    ```bash
+    hawk genmap -i "src/**/*.html" -c
+    ```
+  </p>
+</details>
+
+<details>
+  <summary>How do I initialize the Hawk.js configuration file?</summary>
+  <p>
+    To initialize a default configuration file (`hawk.config.js`), use the `init` command:
+
+    ```bash
+    hawk init
+    ```
+
+    After running this command, the CLI will output:
+
+    ```plaintext
+    🚀 Hawk.js configuration initialized.
+    ```
+  </p>
+</details>
+
+<details>
+  <summary>Can I use multiple strategies in one command?</summary>
+  <p>
+    No, the Hawk.js CLI supports only one strategy per command. To use multiple strategies, you'll need to run separate commands for each strategy.
+  </p>
+</details>
+
+<details>
+  <summary>What happens if I don’t specify a strategy?</summary>
+  <p>
+    If no valid strategy is provided, the CLI will prompt you to choose one of the supported strategies:
+
+    ```plaintext
+    ⭕ Must choose any one number from below:
+    1. IndexNow
+    2. G-WebMaster
+    3. G-WebMaster2
+    4. G-Index
+    ```
+  </p>
+</details>
+
+<details>
+  <summary>How do I get started with the Hawk.js API?</summary>
+  <p>
+    To get started with the Hawk.js API, import the `Hawk` class and create an instance of it:
+    
+    ```javascript
+    import { Hawk } from "hawkjs";
+    const hawk = new Hawk();
+    ```
+  </p>
+</details>
+
+<details>
+  <summary>What methods are available in the Hawk.js API?</summary>
+  <p>
+    Hawk.js provides several useful methods for sitemap generation and indexing automation:
+
+    1. **`hawk(strategy, lookupPatterns, ignorePatterns, prettify)`**: 
+       Executes sitemap generation and submission based on a specified strategy.
+       
+    2. **`utils.makeSitemap(lookupPatterns, ignorePatterns, prettify, upload)`**: 
+       Generates a sitemap and uploads it to the FTP server.
+       
+    3. **`utils.makeRobot()`**: 
+       Creates a `robots.txt` file to guide search engine crawlers.
+       
+    4. **`utils.getLastRunTimeStamp()`**: 
+       Retrieves the timestamp of the last successful run.
+       
+    5. **`utils.getUpdatedRoutesPath(lastRunTimeStamp, lookupPatterns, ignorePatterns)`**: 
+       Finds updated file paths based on the last run timestamp.
+  </p>
+</details>
+
+<details>
+  <summary>How do I use the `hawk` method?</summary>
+  <p>
+    The `hawk` method is the main function for generating sitemaps and submitting them based on the selected strategy. Example usage:
+
+    ```javascript
+    await hawk.hawk("IndexNow", ["src/**/*.html"], ["node_modules/**"], true);
+    ```
+
+    - `strategy`: Choose from `IndexNow`, `GWebmaster`, `GWebmaster2`, or `GIndex`.
+    - `lookupPatterns`: Array of file patterns to include in the sitemap.
+    - `ignorePatterns`: Array of file patterns to exclude from the sitemap.
+    - `prettify`: Boolean to prettify the generated `sitemap.xml`.
+  </p>
+</details>
+
+<details>
+  <summary>How do I generate a sitemap using the `makeSitemap` method?</summary>
+  <p>
+    The `makeSitemap` method generates a `sitemap.xml` file based on the provided patterns. Example usage:
+
+    ```javascript
+    const sitemapStatus = await hawk.utils.makeSitemap(
+      ["src/**/*.html"],
+      ["node_modules/**"],
+      true,
+      true
+    );
+    console.log(sitemapStatus);
+    ```
+
+    - `lookupPatterns`: Array of file patterns to include.
+    - `ignorePatterns`: Array of file patterns to exclude.
+    - `prettify`: Boolean to prettify the `sitemap.xml`.
+    - `upload`: Boolean to upload the sitemap to an FTP server.
+  </p>
+</details>
+
+<details>
+  <summary>How do I create a `robots.txt` file using the API?</summary>
+  <p>
+    You can create a `robots.txt` file with the following method:
+
+    ```javascript
+    const robotTxtStatus = hawk.utils.makeRobot();
+    console.log(robotTxtStatus);
+    ```
+  </p>
+</details>
+
+<details>
+  <summary>How do I retrieve the timestamp of the last successful run?</summary>
+  <p>
+    Use the `getLastRunTimeStamp` method to retrieve the timestamp:
+
+    ```javascript
+    const lastRunTimeStamp = hawk.utils.getLastRunTimeStamp();
+    console.log("Last Run Timestamp:", lastRunTimeStamp);
+    ```
+  </p>
+</details>
+
+<details>
+  <summary>How do I find updated file paths based on the last run timestamp?</summary>
+  <p>
+    You can use `getUpdatedRoutesPath` to find updated routes since the last run:
+
+    ```javascript
+    const updatedRoutes = hawk.utils.getUpdatedRoutesPath(
+      lastRunTimeStamp,
+      ["src/**/*.html"],
+      ["node_modules/**"]
+    );
+    console.log("Updated Routes:", updatedRoutes);
+    ```
+  </p>
+</details>
+
+<details>
+  <summary>How do I configure Hawk.js?</summary>
+  <p>
+    Hawk.js loads configuration options from the `hawk.config.js` file. You can specify various settings like `lookupPatterns`, `ignorePattern`, and FTP credentials.
+
+    Example configuration:
+    
+    ```javascript
+    module.exports = {
+      lookupPatterns: ["src/**/*.html"],
+      ignorePattern: ["node_modules/**"],
+      ftpCredentials: {
+        hostname: "ftp.example.com",
+        username: "yourUsername",
+        password: "yourPassword",
+      },
+      googleServiceAccount: "./service-account.json",
+    };
+    ```
+
+    Access the configuration via the `configurations` property:
+    
+    ```javascript
+    console.log(hawk.configurations.lookupPatterns);
+    ```
+  </p>
+</details>
+
+<details>
+  <summary>Where can I find more information about supported strategies?</summary>
+  <p>
+    For more details on each supported strategy, refer to the strategy-specific documentation:
+    
+    - [IndexNow Strategy](/docs/effective-indexing-with-hawk-js/indexnow)
+    - [Google Webmaster Strategies](/docs/effective-indexing-with-hawk-js/google-webmaster)
+    - [Google Indexing API (GIndex)](/docs/effective-indexing-with-hawk-js/google-job-live-media-indexing)
+  </p>
+</details>
+
+<details>
+  <summary>Which CI/CD platforms are supported by Hawk.js?</summary>
+  <p>
+    Hawk.js can be integrated into the following CI/CD platforms:
+    - **GitHub Actions**
+    - **GitLab CI**
+    - **Jenkins**
+    
+    Each platform has specific workflow templates and configurations to support Hawk.js functionalities.
+  </p>
+</details>
+
+<details>
+  <summary>What are the key actions Hawk.js performs in CI/CD pipelines?</summary>
+  <p>
+    In CI/CD pipelines, Hawk.js performs the following tasks:
+    1. **Build Your Website**: Compiles and prepares your website for deployment.
+    2. **Generate Sitemaps**: Creates `sitemap.xml` and `robots.txt` files using Hawk.js.
+    3. **Trigger Search Engines**: Notifies search engines via different strategies:
+      - **IndexNow**: For Bing, Yahoo, Yandex, and other IndexNow-compatible engines.
+      - **Google Webmaster API**: For submitting and managing sitemaps through Google Search Console.
+      - **Google Indexing API**: Notifies Google about job postings or live stream updates.
+    4. **Optional**: You can choose to generate sitemaps only without notifying search engines.
+  </p>
+</details>
+
+<details>
+  <summary>What are the available strategies for search engine submission in CI/CD?</summary>
+  <p>
+    Hawk.js supports the following strategies for notifying search engines:
+    - **IndexNow**: Used for notifying IndexNow-compatible search engines like Bing and Yandex.
+    - **Google Webmaster**: Submits and manages sitemaps via Google Search Console.
+    - **Google Indexing API**: Used for notifying Google about page updates, including live media or job postings.
+  </p>
+</details>
+
+<details>
+  <summary>How can I customize workflows in my CI/CD pipeline for Hawk.js?</summary>
+  <p>
+    Hawk.js offers customizable workflows for the following actions:
+    1. **IndexNow Strategy**: Notifies IndexNow-compatible search engines.
+    2. **Google Webmaster Strategy**: Submits sitemaps to Google Search Console.
+    3. **Google Indexing API Strategy**: Notifies Google about job postings or live stream updates.
+    4. **Sitemap Generation Only**: Generates sitemaps without submitting them to search engines.
+    
+    Each platform (GitHub Actions, GitLab CI, Jenkins) provides tailored workflow templates and configurations, which can be customized based on your needs.
+  </p>
+</details>
+
+<details>
+  <summary>Where can I find the detailed workflow templates for each platform?</summary>
+  <p>
+    You can find platform-specific workflow examples and templates in the following pages:
+    - [GitHub Actions Integration](/docs/ci-cd-with-hawkjs/github-action)
+    - [GitLab CI Integration](/docs/ci-cd-with-hawkjs/gitlab-ci)
+    - [Jenkins Integration](/docs/ci-cd-with-hawkjs/jenkins)
+    
+    These pages provide step-by-step guides to integrate Hawk.js into your chosen CI/CD platform.
+  </p>
+</details>

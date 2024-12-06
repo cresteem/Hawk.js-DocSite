@@ -1,0 +1,98 @@
+---
+title: "G-Index: Unlocking the Power of Google's Indexing API"
+description: "Understand how Hawk.js integrates with the Google Indexing API to notify Google of new or updated content. Learn the use cases, requirements, and how G-Index optimizes your site's SEO performance."
+---
+
+# GIndex with Hawk.js
+
+Hawk.js supports **G-Index**, which leverages the **[Google Indexing API](https://developers.google.com/search/apis/indexing-api/v3/quickstart)** to notify Google about new or updated content on your site. This strategy ensures faster indexing and improved search visibility for time-sensitive or frequently updated pages.
+
+
+## Overview
+
+The **Google Indexing API** enables website owners to notify Google about the addition or removal of pages. This helps Google schedule fresh crawls, improving content relevance and search engine visibility. Currently, the API is specifically optimized for pages containing structured data like `JobPosting` or `BroadcastEvent` embedded in a `VideoObject`.
+
+
+import {Callout} from "nextra/components";
+
+<Callout type="warning">
+  Google service account’s credential is required to use G-Index. Refer to the [Google Credentials Setup Guide](/docs/credentials/obtaining-google-credentials-for-hawk-js) for more details.
+</Callout>
+
+---
+
+## When to Use G-Index
+
+- **Time-Sensitive Content:** Ideal for job postings or livestream videos that require immediate indexing.
+- **Short-Lived Content:** Ensures content with a short lifecycle remains relevant in search results.
+- **Frequently Updated Content:** Push updates efficiently, ensuring your pages are always up-to-date in search results.
+
+---
+
+## How G-Index Works
+
+1. **File Tracking:**  
+   Hawk.js compares the last triggered timestamps with file modification times. Updated files are added to a list of routes to notify Google about the changes.  
+   - On the **first run**, all matching files are included.
+   - On subsequent runs, only new or modified files are submitted.
+
+2. **Authentication:**  
+   The **Google Indexing API** requires authentication using a **service account file**. This JSON file contains credentials for your project, which must be configured in Hawk.js.
+
+3. **API Submission:**  
+   The list of updated routes is submitted to the Indexing API. This notifies Google to prioritize crawling the listed URLs.
+
+---
+
+## Requirements
+
+- **Service Account File:**  
+  Obtain the service account JSON file from the Google Cloud Console. This file is essential for authenticating API requests. Learn more in our [Google Credentials Setup Guide](/docs/credentials/obtaining-google-credentials-for-hawk-js).
+
+---
+
+## How to Use G-Index in Hawk.js
+
+1. **Update Configuration:**  
+   Configure your `hawk.config.js` file with appropriate patterns and the path to your service account file.
+
+   ```js
+   /** @type {import("@cresteem/hawk-js").hawkJsOptions} */
+   const config = {
+       lookupPatterns: ["**/*.html", "**/*.htm"],
+       ignorePattern: ["node_modules/**"],
+       domainName: "www.example.com",
+       serviceAccountFile: "path/to/your-service-account.json",
+   };
+   exports.default = config;
+   ```
+
+2. **Run Hawk.js with G-Index Strategy:**  
+   Trigger the G-Index strategy via CLI:
+
+   ```bash
+   hawk --strategy 4
+   ```
+
+3. **Monitor API Responses:**  
+   Check the CLI logs for details of submitted routes and verify indexing success in your Google Search Console.
+
+---
+
+## Example Use Cases
+
+- **Job Portals:** Automatically update Google with new job listings.
+- **Livestream Platforms:** Ensure Google indexes event pages containing `BroadcastEvent` data quickly.
+- **News Websites:** Submit updates for breaking news or frequently updated articles.
+
+
+---
+
+**Keywords:**  
+<ul className="keywords">
+  <li>Google Indexing API</li>
+  <li>G-Index</li>
+  <li>SEO optimization</li>
+  <li>structured data</li>
+  <li>time-sensitive content</li>
+</ul>

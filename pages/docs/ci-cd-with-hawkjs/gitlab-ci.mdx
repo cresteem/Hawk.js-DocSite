@@ -1,0 +1,234 @@
+# GitLab CI Workflows for Hawk.js
+
+## Case 1: GitLab CI Workflow for `IndexNow` Strategy
+
+### Prerequisites
+
+#### GitLab CI Secrets Setup:
+To set up secrets in GitLab CI, follow these steps:
+1. Navigate to your GitLab repository.
+2. Go to `Settings` > `CI / CD` > `Variables`.
+3. Add the following secrets:
+   - `FTP_HOST`
+   - `FTP_USERNAME`
+   - `FTP_PASSWORD`
+
+#### Hawk.js Configuration Example (`hawk.config.js`):
+Ensure that the configuration references the secrets and FTP details:
+
+```javascript
+module.exports = {
+  // Your basic config here
+  ftpCredential: {
+    hostname: process.env.FTP_HOST,
+    username: process.env.FTP_USERNAME,
+    password: process.env.FTP_PASSWORD,
+  },
+};
+```
+
+### Workflow
+
+This workflow will:
+- Set up Node.js.
+- Install Hawk.js.
+- Run the Hawk.js CLI with the **IndexNow** strategy to notify search engines about updates to your website content.
+
+#### Workflow File: `.gitlab-ci.yml`
+
+```yaml
+stages:
+  - indexnow
+
+indexnow:
+  stage: indexnow
+  image: node:20 # Choose your Node.js version
+  script:
+    - npm install @cresteem/hawk-js -g
+    - echo "FTP_HOST=${FTP_HOST}" >> .env
+    - echo "FTP_USERNAME=${FTP_USERNAME}" >> .env
+    - echo "FTP_PASSWORD=${FTP_PASSWORD}" >> .env
+    - npx hawk --strategy 1  # Trigger the IndexNow strategy
+    - npx hawk genmap  # Optionally generate the sitemap
+  only:
+    - main  # Trigger only on changes to the main branch
+```
+
+### Breakdown of the Workflow:
+
+1. **Trigger on `main` branch:** This workflow will run whenever changes are pushed to the `main` branch.
+2. **Set up Node.js environment:** It sets up the required Node.js environment using the official `node:20` Docker image.
+3. **Install Hawk.js:** Installs `@cresteem/hawk-js` globally.
+4. **Set up FTP credentials:** It uses GitLab CI variables (`FTP_HOST`, `FTP_USERNAME`, `FTP_PASSWORD`) to set environment variables, which are later used by Hawk.js.
+5. **Run Hawk.js with IndexNow strategy:** It runs the Hawk.js CLI with the `--strategy 1` flag to notify search engines of updates.
+6. **Generate the sitemap (Optional):** Optionally generates the sitemap with `npx hawk genmap`.
+
+---
+
+## Case 2: GitLab CI Workflow for `GWebMaster` & `GWebMaster2` Strategy
+
+### Prerequisites
+
+#### GitLab CI Secrets Setup:
+Before running the workflow, you'll need to set up the necessary secrets in your GitLab repository:
+1. Navigate to your GitLab repository.
+2. Go to `Settings` > `CI / CD` > `Variables`.
+3. Add the following secrets:
+   - `FTP_HOST`
+   - `FTP_USERNAME`
+   - `FTP_PASSWORD`
+   - `GOOGLE_SERVICE_ACCOUNT_JSON` (this will be the contents of the `gserv.json` file)
+
+#### Hawk.js Configuration Example (`hawk.config.js`):
+Ensure that your `hawk.config.js` is properly set to reference the secrets and configure FTP credentials and the Google Service Account file. Example:
+
+```javascript
+module.exports = {
+  lookupPatterns: ["**/*.html", "**/*.htm"],
+  ignorePattern: ["node_modules/**"],
+  timeZone: "Asia/Kolkata",
+  domainName: "www.cresteem.com",
+  serviceAccountFile: "gserv.json", // Path to Google service account file
+  ftpCredential: {
+    hostname: process.env.FTP_HOST,
+    username: process.env.FTP_USERNAME,
+    password: process.env.FTP_PASSWORD,
+  },
+};
+```
+
+### Workflow
+
+This workflow will:
+- Set up Node.js.
+- Install Hawk.js.
+- Run the Hawk.js CLI with the **Google Webmaster (GWebMaster)** or **Google Webmaster 2 (GWebMaster2)** strategy to notify Google about updates to your website content.
+
+#### Workflow File: `.gitlab-ci.yml`
+
+```yaml
+stages:
+  - gwebmaster
+
+gwebmaster:
+  stage: gwebmaster
+  image: node:20  # Choose your desired Node.js version
+  script:
+    - npm install @cresteem/hawk-js -g
+    - echo "${GOOGLE_SERVICE_ACCOUNT_JSON}" > gserv.json
+    - echo "FTP_HOST=${FTP_HOST}" >> .env
+    - echo "FTP_USERNAME=${FTP_USERNAME}" >> .env
+    - echo "FTP_PASSWORD=${FTP_PASSWORD}" >> .env
+    - npx hawk --strategy 2  # Trigger the GWebMaster strategy or 3 for GWebMaster2
+  only:
+    - main  # Trigger only on changes to the main branch
+```
+
+### Breakdown of the Workflow:
+
+1. **Trigger on `main` branch:** The workflow is triggered when changes are pushed to the `main` branch.
+2. **Set up Node.js environment:** It uses the `node:20` Docker image to set up the required environment.
+3. **Install Hawk.js:** The `@cresteem/hawk-js` package is installed globally.
+4. **Set up Google Service Account:** The Google Service Account JSON is retrieved from GitLab CI secrets and written to a file, `gserv.json`.
+5. **Set up FTP credentials:** FTP credentials are retrieved from GitLab CI variables and added as environment variables.
+6. **Run Hawk.js with Google Webmaster strategy:** It runs the Hawk.js CLI with the `--strategy 2` flag to submit the sitemap to Google Search Console.
+
+---
+
+## Case 3: GitLab CI Workflow for `GIndex` Strategy
+
+### Prerequisites
+
+#### GitLab CI Secrets Setup:
+Before running the workflow, you'll need to set up the necessary secrets in your GitLab repository:
+1. Navigate to your GitLab repository.
+2. Go to `Settings` > `CI / CD` > `Variables`.
+3. Add the following secrets:
+   - `GOOGLE_SERVICE_ACCOUNT_JSON` (this will be the contents of the `service-account.json` file)
+
+#### Hawk.js Configuration Example (`hawk.config.js`):
+Ensure that your `hawk.config.js` is properly configured to reference the service account file. Example:
+
+```javascript
+module.exports = {
+  lookupPatterns: ["**/*.html", "**/*.htm"],
+  ignorePattern: ["node_modules/**"],
+  domainName: "www.cresteem.com", // Replace with your domain
+  serviceAccountFile: "gserv.json", // Path to Google service account file
+};
+```
+
+### Workflow
+
+This workflow will:
+- Set up Node.js.
+- Install Hawk.js.
+- Run the Hawk.js CLI with the **G-Index** strategy to notify Google about updates to your website content.
+
+#### Workflow File: `.gitlab-ci.yml`
+
+```yaml
+stages:
+  - gindex
+
+gindex:
+  stage: gindex
+  image: node:20 # Choose your Node.js version
+  script:
+    - npm install @cresteem/hawk-js -g
+    - echo "${GOOGLE_SERVICE_ACCOUNT_JSON}" > gserv.json
+    - npx hawk --strategy 4  # Trigger the G-Index strategy
+    - npx hawk genmap  # Optionally generate the sitemap
+  only:
+    - main  # Trigger only on changes to the main branch
+```
+
+### Breakdown of the Workflow:
+
+1. **Trigger on `main` branch:** The workflow is triggered when changes are pushed to the `main` branch.
+2. **Set up Node.js environment:** It uses the `node:20` Docker image to set up the required Node.js environment.
+3. **Install Hawk.js:** The `@cresteem/hawk-js` package is installed globally.
+4. **Set up Google Service Account:** The Google Service Account JSON is retrieved from GitLab CI secrets and written to a file.
+5. **Run Hawk.js with G-Index strategy:** It runs the Hawk.js CLI with the `--strategy 4` flag to notify Google Search Console.
+
+---
+
+## Case 4: GitLab CI Workflow for Generating Sitemap
+
+This section provides a GitLab CI workflow for generating a sitemap using Hawk.js, with the option to upload the sitemap to an FTP server.
+
+### Workflow File: `.gitlab-ci.yml`
+
+```yaml
+stages:
+  - generate-sitemap
+
+generate-sitemap:
+  stage: generate-sitemap
+  image: node:20  # Set your desired Node.js version
+  script:
+    - npm install @cresteem/hawk-js -g  # Install Hawk.js globally
+    - npx hawk genmap -i "src/**/*.html" -e "node_modules/**"  # Generate sitemap without uploading
+    - npx hawk genmap -i "src/**/*.html" -c  # Generate and upload sitemap
+  only:
+    - main  # Trigger only on changes to the main branch
+```
+
+---
+
+### Breakdown of the Workflow:
+
+1. **Generate Sitemap Without Upload:**  
+   The workflow generates the sitemap without uploading it. This is done using the `npx hawk genmap -i "src/**/*.html" -e "node_modules/**"` command.
+
+2. **Generate and Upload Sitemap to FTP:**  
+   If you wish to upload the generated sitemap, the workflow also includes
+
+ `npx hawk genmap -i "src/**/*.html" -c` to upload the sitemap after generation.
+
+---
+
+### Conclusion
+
+With these workflows, you can easily automate the process of generating sitemaps, notifying search engines about updates, and ensuring real-time indexing of your web content. For workflows tailored to other CI platforms such as [GitHub Actions](/docs/ci-cd-with-hawkjs/github-action) or [Jenkins](/docs/ci-cd-with-hawkjs/jenkins), refer to the relevant documentation links.
+

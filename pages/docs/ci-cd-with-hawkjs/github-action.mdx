@@ -1,0 +1,447 @@
+# GitHub Actions
+
+## Case 1: GitHub Actions Workflow for `IndexNow` Strategy
+
+### Prerequisite
+
+#### GitHub Secrets Setup:
+To create secrets in GitHub, follow these steps:
+1. Navigate to your GitHub repository.
+2. Go to `Settings` > `Secrets` > `New repository secret`.
+3. Add the following secrets:
+   - `FTP_HOST`
+   - `FTP_USERNAME`
+   - `FTP_PASSWORD`
+
+#### Hawk.js Configuration Example (`hawk.config.js`):
+Ensure that the configuration is properly set to reference the secrets and FTP details. Example:
+
+```javascript
+module.exports = {
+  // Your basic config here
+  ftpCredential: {
+    hostname: process.env.FTP_HOST,
+    username: process.env.FTP_USERNAME,
+    password: process.env.FTP_PASSWORD,
+  },
+};
+```
+
+### Workflow
+
+This workflow will:
+- Set up Node.js.
+- Install Hawk.js.
+- Run the Hawk.js CLI with the **IndexNow** strategy to notify search engines about updates to your website content.
+
+#### Workflow File: `.github/workflows/indexnow.yml`
+
+```yaml
+name: Hawk.js IndexNow Strategy
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull requests targeting the main branch
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Choose your desired Node.js version
+
+      # Step 3: Install Hawk.js
+      - name: Install Hawk.js
+        run: |
+          npm install @cresteem/hawk-js -g
+
+      # Step 4: Set up FTP credentials in environment variables (GitHub secrets)
+      - name: Set up FTP credentials
+        run: |
+          echo "FTP_HOST=${{ secrets.FTP_HOST }}" >> $GITHUB_ENV
+          echo "FTP_USERNAME=${{ secrets.FTP_USERNAME }}" >> $GITHUB_ENV
+          echo "FTP_PASSWORD=${{ secrets.FTP_PASSWORD }}" >> $GITHUB_ENV
+
+      # Step 5: Run Hawk.js with IndexNow strategy
+      - name: Run Hawk.js with IndexNow strategy
+        run: |
+          npx hawk --strategy 1  # Trigger the IndexNow strategy
+
+      # Step 6: Optionally, generate the sitemap
+      - name: Generate the sitemap
+        run: |
+            npx hawk genmap
+```
+
+### Breakdown of the Workflow:
+
+1. **Trigger on `push` and `pull_request`:** This workflow will be triggered whenever changes are pushed to the `main` branch or a pull request is made targeting the `main` branch.
+
+2. **Checkout Repository:** The workflow checks out the repository so that it can access your files.
+
+3. **Set up Node.js:** The workflow sets up a specific version of Node.js (e.g., version 16).
+
+4. **Install Hawk.js:** It installs `@cresteem/hawk-js` from npm registry.
+
+5. **Set up FTP Credentials:** It retrieves FTP credentials from GitHub secrets and sets them as environment variables. These credentials are used by Hawk.js for uploading the sitemap or hash key if necessary.
+
+6. **Run Hawk.js with IndexNow Strategy:** It runs Hawk.js using the `--strategy 1` flag, which tells it to use the **IndexNow strategy**.
+
+7. **Generate the sitemap** Optionally.
+
+### Notes:
+- **IndexNow strategy (`--strategy 1`)** sends notifications to supported search engines (Bing, Yandex, etc.) when updates are made to your content.
+- The `npx hawk --strategy 1` command triggers the indexing process.
+
+---
+
+## Case 2: GitHub Actions Workflow for `GWebMaster` & `GWebMaster2` Strategy
+
+### Prerequisites
+
+#### GitHub Secrets Setup:
+Before running the workflow, you'll need to set up the necessary secrets in your GitHub repository:
+1. Navigate to your GitHub repository.
+2. Go to `Settings` > `Secrets` > `New repository secret`.
+3. Add the following secrets:
+   - `FTP_HOST`
+   - `FTP_USERNAME`
+   - `FTP_PASSWORD`
+   - `GOOGLE_SERVICE_ACCOUNT_JSON` (this will be the contents of the `gserv.json` file)
+
+#### Hawk.js Configuration Example (`hawk.config.js`):
+Ensure that your `hawk.config.js` is properly set to reference the secrets and configure FTP credentials and the Google Service Account file. Example:
+
+```javascript
+module.exports = {
+  lookupPatterns: ["**/*.html", "**/*.htm"],
+  ignorePattern: ["node_modules/**"],
+  timeZone: "Asia/Kolkata",
+  domainName: "www.cresteem.com",
+  sitemapPath: "sitemap.xml",
+  robotPath: "robot.txt",
+  serviceAccountFile: "gserv.json", // Path to Google service account file
+  ftpCredential: {
+    hostname: process.env.FTP_HOST,
+    username: process.env.FTP_USERNAME,
+    password: process.env.FTP_PASSWORD,
+  },
+};
+```
+
+### Workflow
+
+This workflow will:
+- Set up Node.js.
+- Install Hawk.js.
+- Run the Hawk.js CLI with the **Google Webmaster (GWebMaster)** or **Google Webmaster 2 (GWebMaster2)** strategy to notify Google about updates to your website content.
+
+#### Workflow File: `.github/workflows/gwebmaster.yml`
+
+```yaml
+name: Hawk.js Google Webmaster Strategy
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull requests targeting the main branch
+
+jobs:
+  gwebmaster:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Choose your desired Node.js version
+
+      # Step 3: Install Hawk.js
+      - name: Install Hawk.js
+        run: |
+          npm install @cresteem/hawk-js -g
+
+      # Step 4: Set up FTP credentials in environment variables (GitHub secrets)
+      - name: Set up FTP credentials
+        run: |
+          echo "FTP_HOST=${{ secrets.FTP_HOST }}" >> $GITHUB_ENV
+          echo "FTP_USERNAME=${{ secrets.FTP_USERNAME }}" >> $GITHUB_ENV
+          echo "FTP_PASSWORD=${{ secrets.FTP_PASSWORD }}" >> $GITHUB_ENV
+
+      # Step 5: Set up Google Service Account in environment variable
+      - name: Set up Google Service Account
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}" > gserv.json
+          echo "Service account file created."
+
+      # Step 6: Run Hawk.js with Google Webmaster strategy
+      - name: Run Hawk.js with GWebMaster strategy
+        run: |
+          npx hawk --strategy 2  # Trigger the GWebMaster strategy or 3 for GWebMaster2
+```
+
+### Breakdown of the Workflow:
+
+1. **Trigger on `push` and `pull_request`:** This workflow will be triggered whenever changes are pushed to the `main` branch or a pull request is made targeting the `main` branch.
+
+2. **Checkout Repository:** The workflow checks out the repository so that it can access your files.
+
+3. **Set up Node.js:** The workflow sets up a specific version of Node.js (e.g., version 16).
+
+4. **Install Hawk.js:** It installs `@cresteem/hawk-js` from npm registry.
+
+5. **Set up FTP Credentials:** It retrieves FTP credentials from GitHub secrets and sets them as environment variables. These credentials are used by Hawk.js for uploading the sitemap to the FTP server.
+
+6. **Set up Google Service Account:** It retrieves the Google Service Account credentials (`gserv.json`) from GitHub secrets and writes it to a file, allowing Hawk.js to authenticate with Google Search Console.
+
+7. **Run Hawk.js with Google Webmaster strategy:** It runs Hawk.js using the `--strategy 2` flag, which triggers the **Google Webmaster** strategy to submit the sitemap.
+
+### Notes:
+- **GWebMaster strategy (`--strategy 2`)** submits your sitemap to Google Search Console.
+- **GWebMaster2 strategy (`--strategy 3`)** provides more detailed feedback on indexing status and crawl errors, which can be helpful for troubleshooting.
+- The `npx hawk --strategy 2` or `npx hawk --strategy 3` commands trigger the submission process to Google Search Console.
+
+---
+
+## Case 3: GitHub Actions Workflow for `GIndex` Strategy
+
+### Prerequisites
+
+#### GitHub Secrets Setup:
+Before running the workflow, you'll need to set up the necessary secrets in your GitHub repository:
+1. Navigate to your GitHub repository.
+2. Go to `Settings` > `Secrets` > `New repository secret`.
+3. Add the following secrets:
+   - `GOOGLE_SERVICE_ACCOUNT_JSON` (this will be the contents of the `service-account.json` file)
+
+#### Hawk.js Configuration Example (`hawk.config.js`):
+Ensure that your `hawk.config.js` is properly configured to reference the service account file. Example:
+
+```javascript
+/** @type {import("@cresteem/hawk-js").hawkJsOptions} */
+const config = {
+  lookupPatterns: ["**/*.html", "**/*.htm"],
+  ignorePattern: ["node_modules/**"],
+  domainName: "www.cresteem.com", // Replace with your domain
+  serviceAccountFile: "gserv.json", // Path to Google service account file
+};
+exports.default = config;
+```
+
+### Workflow
+
+This workflow will:
+- Set up Node.js.
+- Install Hawk.js.
+- Run the Hawk.js CLI with the **G-Index** strategy to notify Google about updates to your website content.
+
+#### Workflow File: `.github/workflows/gindex.yml`
+
+```yaml
+name: Hawk.js G-Index Strategy
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull requests targeting the main branch
+
+jobs:
+  gindex:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Choose your desired Node.js version
+
+      # Step 3: Install Hawk.js
+      - name: Install Hawk.js
+        run: |
+          npm install @cresteem/hawk-js -g
+
+      # Step 4: Set up Google Service Account in environment variable
+      - name: Set up Google Service Account
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}" > gserv.json
+          echo "Service account file created."
+
+      # Step 5: Run Hawk.js with G-Index strategy
+      - name: Run Hawk.js with G-Index strategy
+        run: |
+          npx hawk --strategy 4  # Trigger the G-Index strategy
+
+      # Step 6: Optionally, generate the sitemap
+      - name: Generate the sitemap
+        run: |
+            npx hawk genmap
+```
+
+### Breakdown of the Workflow:
+
+1. **Trigger on `push` and `pull_request`:** This workflow is triggered whenever changes are pushed to the `main` branch or a pull request is made targeting the `main` branch.
+
+2. **Checkout Repository:** The workflow checks out the repository to access your files.
+
+3. **Set up Node.js:** The workflow sets up a specific version of Node.js (e.g., version 20).
+
+4. **Install Hawk.js:** It installs `@cresteem/hawk-js` from npm registry.
+
+5. **Set up Google Service Account:** It retrieves the Google Service Account credentials (`gserv.json`) from GitHub secrets and writes them to a file, allowing Hawk.js to authenticate with Google APIs.
+
+6. **Run Hawk.js with G-Index strategy:** It runs Hawk.js using the `--strategy 4` flag, which triggers the **G-Index strategy** to submit updates to Google Search Console.
+
+7. **Generate the sitemap (Optional):** Optionally, you can generate the sitemap using the `npx hawk genmap` command.
+
+### Notes:
+- **G-Index strategy (`--strategy 4`)** sends updates to Google Search Console about content changes on your website, ensuring quick indexing.
+- The `npx hawk --strategy 4` command triggers the indexing process.
+- **Service Account JSON:** The service account JSON file is required for authentication when using the Google Index API.
+
+---
+
+## Case 4: GitHub Actions Workflow for Generating Sitemap
+
+This section will provide a GitHub Actions workflow for generating a sitemap using Hawk.js. Additionally, the workflow will allow for optional FTP upload of the generated sitemap.
+
+### Workflow File: `.github/workflows/generate-sitemap.yml`
+
+```yaml
+name: Generate Sitemap with Hawk.js
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull requests targeting the main branch
+
+jobs:
+  generate-sitemap:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Set your desired Node.js version
+
+      # Step 3: Install Hawk.js
+      - name: Install Hawk.js
+        run: |
+          npm install @cresteem/hawk-js -g  # Install Hawk.js globally
+
+      # Step 4: Generate the sitemap (without upload)
+      - name: Generate Sitemap (No Upload)
+        run: |
+          npx hawk genmap -i "src/**/*.html" -e "node_modules/**"  # Generate sitemap without uploading
+
+      # Step 5: Optionally, generate and upload the sitemap to FTP server
+      # Uncomment the next step to enable uploading the sitemap after generation
+      - name: Generate and Upload Sitemap
+        run: |
+          npx hawk genmap -i "src/**/*.html" -c  # Generate sitemap and upload to FTP server
+```
+
+---
+
+### Breakdown of the Workflow:
+
+1. **Checkout Repository:**  
+   The workflow starts by checking out your repository to allow access to your files, including the configuration file `hawk.config.js`.
+
+2. **Set Up Node.js:**  
+   This step sets up a specific version of Node.js (`v20` in this case) required for Hawk.js to run.
+
+3. **Install Hawk.js:**  
+   Hawk.js is installed globally using `npm install @cresteem/hawk-js -g`. This is necessary to run the `hawk` CLI command.
+
+4. **Generate Sitemap (No Upload):**  
+   This step generates the sitemap based on your project's `.html` files, excluding the `node_modules` directory. The command is:
+
+   ```bash
+   npx hawk genmap -i "src/**/*.html" -e "node_modules/**"
+   ```
+
+   This will generate a sitemap without uploading it anywhere. The `-i` flag specifies which files to include, and the `-e` flag excludes the specified pattern (`node_modules/**`).
+
+5. **Generate and Upload Sitemap (Optional):**  
+   This step generates the sitemap and uploads it to your FTP server. If you wish to upload the sitemap, simply enable this step by uncommenting it. The command is:
+
+   ```bash
+   npx hawk genmap -i "src/**/*.html" -c
+   ```
+
+   The `-c` flag instructs Hawk.js to upload the generated sitemap to the FTP server specified in your `hawk.config.js`. This step will only run if you enable it by uncommenting.
+
+---
+
+### Notes:
+
+- **Generate Sitemap Without Upload:**  
+   The workflow will generate the sitemap and store it in your repository without uploading it. This is useful if you want to review the generated sitemap locally or handle uploading in a separate process.
+
+- **Generate and Upload Sitemap to FTP:**  
+   The optional step allows you to upload the sitemap directly to an FTP server after generation. Make sure that you have configured the FTP credentials in your `hawk.config.js` file, and that the FTP server is accessible.
+
+- **FTP Credentials:**  
+   If you're uploading to an FTP server, ensure that your FTP credentials are properly set in the `hawk.config.js` and are securely stored in GitHub Secrets (e.g., `FTP_USERNAME`, `FTP_PASSWORD`, `FTP_HOST`).
+
+---
+
+Got it! Here's a revised **final note** focusing solely on the strategies and sitemap generation process with **GitHub Actions**, making it clear that this is the conclusion for this specific section:
+
+---
+
+## Final Notes
+
+You've now successfully set up a GitHub Actions workflow to automate your sitemap generation and submission process with Hawk.js. This workflow covers the following strategies:
+
+- **IndexNow Strategy:** Automatically notify search engines like Bing and Yandex about updates to your website.
+- **Google Webmaster Strategy (GWebMaster & GWebMaster2):** Submit your sitemap and receive detailed feedback on indexing and crawl status.
+- **G-Index Strategy:** Use Google’s Search Indexing API to notify Google about updates for quicker indexing.
+- **Sitemap Generation:** Generate a sitemap and optionally upload it to an FTP server for search engines to crawl.
+
+By leveraging **GitHub Actions**, your website’s content will stay fresh in search results, ensuring better visibility and faster updates.
+
+---
+
+### Next Steps:
+- If you're using other Continuous Integration platforms like **[GitLab CI](/docs/ci-cd-with-hawkjs/gitlab-ci)** or **[Jenkins](/docs/ci-cd-with-hawkjs/jenkins)**, explore the specific workflow setups for those environments in the next sections of the documentation. These platforms follow similar steps, with slight variations in syntax and setup.
+
+Happy automating with Hawk.js!
+

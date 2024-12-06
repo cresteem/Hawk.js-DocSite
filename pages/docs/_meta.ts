@@ -10,14 +10,14 @@ export default {
   "getting-started-with-hawk-js": {
     title: "Getting Started",
   },
-  "effective-indexing-with-hawk-js": {
-    title: "Hawk Stategies",
-  },
   "hawk-js-configuration-settings-guide": {
     title: "Configurations",
   },
-  "obtaining-google-credentials-for-hawk-js": {
-    title: "Credentials 🔑🚨",
+  "effective-indexing-with-hawk-js": {
+    title: "Strategy",
+  },
+  credentials: {
+    title: "Credentials",
   },
   "enhancing-seo-with-hawk-js-cli": {
     title: "CLI References",
@@ -30,6 +30,9 @@ export default {
   },
   "hawk-js-demonstration-repository": {
     title: "Demonstration",
+  },
+  "ci-cd-with-hawkjs": {
+    title: "CI/CD",
   },
   "comprehensive-faq-for-hawk-js": {
     title: "FAQ",

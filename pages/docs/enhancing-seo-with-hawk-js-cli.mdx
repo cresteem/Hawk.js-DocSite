@@ -1,200 +1,174 @@
 ---
-title: "Maximizing SEO with Hawk JS: CLI Commands and Strategies"
-description: "Understanding the Hawk JS CLI tool is key to enhancing your SEO efforts. This article will walk you through the usage, options, and commands, providing clear instructions on generating, uploading, and submitting sitemaps for improved search engine indexing."
-thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbnail.png
+title: "Hawk.js CLI: Simplified Sitemap Generation and Submission"
+description: "Learn how to use the Hawk.js CLI for generating sitemaps, feeding them to search engines, and initializing configurations. Explore supported strategies and command options."
 ---
 
-# CLI References for Hawk JS
+# Hawk.js CLI Documentation
 
-The Hawk JS CLI tool empowers you to manage and optimize sitemaps for enhanced SEO performance. It supports multiple strategies (`GIndex`, `IndexNow`, `GWebmaster`, `GWebmaster2`) not only for generating and submitting sitemaps but also for updating and ensuring the inclusion of recently updated content. Use options to define inclusion and exclusion patterns for files, ensuring precise control over which content is indexed.
+Hawk.js provides a powerful CLI tool to automate sitemap generation and submission to search engines using various supported strategies. This guide will walk you through the commands, options, and best practices for using the Hawk.js CLI.
 
-**Notes**
+---
 
-- Ensure your `hawk.config.json` is configured properly for advanced settings.
-- Use `-h` or `--help` with any command to get detailed usage information.
+## Getting Started
 
-This structured reference guide provides users with clear instructions on how to use Hawk JS from the command line, covering various commands, options, and examples for effective sitemap management and submission.
-
-## Usage
+The CLI can be invoked using the `hawk` command once Hawk.js is installed globally or locally in your project.
 
 ```bash
 hawk [options] [command]
 ```
 
-## Options
+---
 
-- `-s, --strategy <strategy>`: Strategy to use (`GIndex`, `IndexNow`, `GWebmaster`, `GWebmaster2`).
+## Global Options
 
-Default is `IndexNow`.
+The following global options apply to all commands in the CLI:
 
-**Optional:**
+| Option         | Alias | Default                        | Description                                                                 |
+|----------------|-------|--------------------------------|-----------------------------------------------------------------------------|
+| `--strategy`   | `-s`  | (Required)                    | The indexing strategy to use (see strategies below).                       |
+| `--include`    | `-i`  | Configured lookup patterns    | Specify file patterns to include in sitemap generation.                    |
+| `--exclude`    | `-e`  | Configured ignore patterns    | Specify file patterns to exclude from sitemap generation.                  |
+| `--prettify`   | `-p`  | `false`                       | Prettify the output of the generated `sitemap.xml` file for better readability. |
 
-- `-i, --include <pattern>`: Include pattern for file selection.
+---
 
-- `-e, --exclude <pattern>`: Exclude pattern for file selection.
+## Supported Strategies
 
-- `-p, --prettify`: Prettify sitemap.xml output. Default is `false`.
+Choose one of the following strategies by providing the corresponding number with the `--strategy` option:
+
+| Strategy Number | Strategy Name | Description                                                                 |
+|------------------|---------------|-----------------------------------------------------------------------------|
+| `1`             | IndexNow      | Notify search engines like Bing and Yandex about content changes.          |
+| `2`             | GWebMaster    | Generate and submit sitemaps to Google Search Console.                     |
+| `3`             | GWebMaster2   | Generate, submit sitemaps, and receive feedback from Google Search Console.|
+| `4`             | GIndex        | Push content updates directly to Google via the Indexing API.              |
+
+---
 
 ## Commands
 
-### `genmap [options]`
+### 1. Generate Sitemap: `genmap`
 
-Generate sitemap.xml and optionally upload to Google Search Console.
+The `genmap` command generates a sitemap based on the provided `--include` and `--exclude` patterns. Optionally, it can upload the generated sitemap to an FTP server.
 
-**Options:**
+```bash
+hawk genmap [options]
+```
 
-All are optional nothing mandatory.
+#### Options for `genmap`
 
-- `-c, --commit`: Upload generated sitemap to Google Search Console and FTP server.
-- `-i, --include <pattern>`: Include pattern for file selection.
-- `-e, --exclude <pattern>`: Exclude pattern for file selection.
-- `-p, --prettify`: Prettify sitemap.xml output. Default is `false`.
+| Option       | Alias | Default | Description                                                        |
+|--------------|-------|---------|--------------------------------------------------------------------|
+| `--commit`   | `-c`  | `false` | Upload the generated `sitemap.xml` file to the FTP server.         |
 
-### `secret`
+#### Example Usage
 
-Set FTP credentials from `secrets.json` to the system environment.
+1. **Generate a sitemap without uploading:**
 
-import { Tabs, Callout } from "nextra/components";
+   ```bash
+   hawk genmap -i "src/**/*.html" -e "node_modules/**"
+   ```
 
-## Examples
+2. **Generate and upload a sitemap to the FTP server:**
 
-### Set Secret Credentials:
+   ```bash
+   hawk genmap -i "src/**/*.html" -c
+   ```
 
-<Tabs items={['yarn','npx']}>
-    <Tabs.Tab>
-        ```bash
-        yarn hawk secret
-        ```
-    </Tabs.Tab>
+---
 
-    <Tabs.Tab>
-        ```bash
-        npx hawk secret
-        ```
-    </Tabs.Tab>
+### 2. Initialize Configuration: `init`
 
-</Tabs>
+The `init` command initializes a default configuration file (`hawk.config.js`) in the root directory of your project.
 
-### Generate Sitemap Only:
+```bash
+hawk init
+```
 
-<Tabs items={['yarn','npx']}>
-    <Tabs.Tab>
-        ```bash
-        yarn hawk genmap
-        ```
-    </Tabs.Tab>
+#### Example Usage
 
-    <Tabs.Tab>
-        ```bash
-        npx hawk genmap
-        ```
-    </Tabs.Tab>
+```bash
+hawk init
+```
 
-</Tabs>
+Output:
 
-### Generate and Upload Sitemap to Google Search Console and FTP:
+```plaintext
+🚀 Hawk.js configuration initialized.
+```
 
-<Tabs items={['yarn','npx']}>
-    <Tabs.Tab>
-        ```bash
-        yarn hawk genmap -c
-        ```
-    </Tabs.Tab>
+---
 
-    <Tabs.Tab>
-        ```bash
-        npx hawk genmap -c
-        ```
-    </Tabs.Tab>
+### 3. Main Command
 
-</Tabs>
+If no subcommand is provided, the CLI defaults to employing a strategy for sitemap generation and submission.
 
-### Submit Updated Link to Search Engines Using `IndexNow` Strategy:
+```bash
+hawk [options]
+```
 
-<Tabs items={['yarn','npx']}>
-    <Tabs.Tab>
-        ```bash
-        yarn hawk -s IndexNow
-        ```
-    </Tabs.Tab>
+#### Example Usage
 
-    <Tabs.Tab>
-        ```bash
-        npx hawk -s IndexNow
-        ```
-    </Tabs.Tab>
+1. **Use the IndexNow strategy:**
 
-</Tabs>
+   ```bash
+   hawk -s 1
+   ```
+    Output:
 
-### Submit Updated Link to Google Using `GIndex` Strategy:
+    ```plaintext
+    🚀 Hawk employing "IndexNow" strategy...
+    ```
 
-<Callout type='warning'>Google service account's credential is required. Follow [Credential](obtaining-google-credentials-for-hawk-js) page.</Callout>
-   <Tabs items={['yarn','npx']}>
-    <Tabs.Tab>
-        ```bash
-        yarn hawk -s GIndex
-        ```
-    </Tabs.Tab>
+2. **Use the GWebMaster2 strategy**
 
-    <Tabs.Tab>
-        ```bash
-        npx hawk -s GIndex
-        ```
-    </Tabs.Tab>
+   ```bash
+   hawk -s 3
+   ```
 
-</Tabs>
+    Output:
 
-### Generate and Upload Sitemap Using `GWebmaster` Strategy:
+    ```plaintext
+    🚀 Hawk employing "GWebMaster2" strategy...
+    ```
 
-<Callout type='warning'>Google service account's credential is required. Follow [Credential](obtaining-google-credentials-for-hawk-js) page.</Callout>
-<Tabs items={['yarn','npx']}>
-    <Tabs.Tab>
-        ```bash
-        yarn hawk -s GWebmaster
-        ```
-    </Tabs.Tab>
+---
 
-    <Tabs.Tab>
-        ```bash
-        npx hawk -s GWebmaster
-        ```
-    </Tabs.Tab>
+## FAQ: Common Questions
 
-</Tabs>
+### What happens if I don’t specify a strategy?
 
-### Generate and Upload Sitemap Using `GWebmaster2` Strategy:
+If no valid strategy is provided, the CLI will prompt you to choose one of the supported strategies.
 
-<Callout type='warning'>Google service account's credential is required. Follow [Credential](obtaining-google-credentials-for-hawk-js) page.</Callout>
-<Callout type='info'>It check for status of submission in addition to `GWebmaster` strategy</Callout>
-   
-   <Tabs items={['yarn','npx']}>
-    <Tabs.Tab>
-        ```bash
-        yarn hawk -s GWebmaster2
-        ```
-    </Tabs.Tab>
+```plaintext
+⭕ Must choose any one number from below:
+1. IndexNow
+2. G-WebMaster
+3. G-WebMaster2
+4. G-Index
+```
 
-    <Tabs.Tab>
-        ```bash
-        npx hawk -s GWebmaster2
-        ```
-    </Tabs.Tab>
+### Can I use multiple strategies in one command?
 
-</Tabs>
+No. Each CLI invocation applies a single strategy. To use multiple strategies, run separate CLI commands.
 
-<br />
-<br />
-<br />
-<b>Let's get into API!</b>
+---
 
-import style from "../../stylesheets/utils.module.scss";
+## Next Steps
 
-<br />
-<br />
-<br />
-<strong>Keywords:</strong>
-<ul className={style.keywords}>
-  <li>CLI reference guide</li>
-  <li>command line interface</li>
-  <li>sitemap management</li>
+Explore more about each strategy:
+
+- [IndexNow Strategy](/docs/effective-indexing-with-hawk-js/indexnow)
+- [Google Webmaster Strategies](/docs/effective-indexing-with-hawk-js/google-webmaster)
+- [Google Indexing API (GIndex)](/docs/effective-indexing-with-hawk-js/google-job-live-media-indexing)
+
+---
+
+**Keywords:**  
+<ul className="keywords">
+  <li>Hawk.js CLI</li>
+  <li>sitemap generation</li>
+  <li>search engine indexing</li>
+  <li>IndexNow</li>
+  <li>Google Webmaster Tools</li>
 </ul>

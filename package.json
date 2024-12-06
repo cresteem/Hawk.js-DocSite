@@ -1,7 +1,7 @@
 {
   "name": "hawk-js-docsite",
   "version": "0.2b",
-  "description": "Hawk JS API References",
+  "description": "Hawk.js API References",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

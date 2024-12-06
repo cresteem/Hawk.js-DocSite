@@ -1,51 +1,191 @@
 ---
-title: "Exploring Hawk JS API: A Comprehensive Reference"
-description: "Understanding the Hawk JS API is key to harnessing its full potential. This article will serve as your go-to reference, covering methods for indexation, sitemap generation, and more, along with code examples for your web projects."
-thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbnail.png
+title: "Hawk.js API Documentation"
+description: "Explore Hawk.js's public API for sitemap generation, indexing strategies, and utilities. Learn how to use its methods for streamlined SEO and automation."
 ---
 
-# Hawk JS API References
+# Hawk.js API Documentation
 
-## hawk
+The Hawk.js API offers user-friendly methods for sitemap generation, search engine submission, and indexing automation. This page details the public API methods and their usage.
 
-- hawk ( )
+---
 
-## hawkStrategy
+## Getting Started
 
-- hawkStrategy.indexNow ( )
+To use the Hawk.js API, import the `Hawk` class into your project:
 
-- hawkStrategy.gIndex ( )
+```javascript
+import { Hawk } from "hawkjs";
 
-- hawkStrategy.gWebmaster ( )
+const hawk = new Hawk();
+```
 
-- hawkStrategy.gWebmaster2 ( )
+---
 
-## utilities
+## Public API Methods
 
-- getLastRunTimeStamp ( )
+### 1. `hawk(strategy, lookupPatterns, ignorePatterns, prettify)`
 
-- getUpdatedRoutesPath ( )
+This is the main method to execute sitemap generation and submission based on a specified strategy.
 
-- makeRobot ( )
+#### Parameters
 
-- makeSitemap ( )
+| Parameter        | Type       | Default                       | Description                                                                                     |
+|------------------|------------|-------------------------------|-------------------------------------------------------------------------------------------------|
+| `strategy`       | `string`   | (Required)                   | The strategy to employ (`IndexNow`, `GWebmaster`, `GWebmaster2`, or `GIndex`).                 |
+| `lookupPatterns` | `string[]` | Configured lookup patterns    | Array of file patterns to include in the sitemap.                                              |
+| `ignorePatterns` | `string[]` | Configured ignore patterns    | Array of file patterns to exclude from the sitemap.                                            |
+| `prettify`       | `boolean`  | `false`                      | Whether to prettify the generated `sitemap.xml` for better readability.                        |
 
-- \_makeSitemapRobot ( )
+#### Returns
 
-- lastSubmissionStatusGAPI ( )
+- `Promise<boolean>`: Resolves to `true` if the strategy completes successfully, otherwise `false`.
 
-<br />
-<br />
-<br />
-<b>Let's delve deeper into API!</b>
+#### Example Usage
 
-import style from "../../stylesheets/utils.module.scss";
+```javascript
+await hawk.hawk("IndexNow", ["src/**/*.html"], ["node_modules/**"], true);
+```
 
-<br />
-<br />
-<br />
-<strong>Keywords:</strong>
-<ul className={style.keywords}>
-  <li>Search engine optimization API</li>
-  <li>developer guide</li>
+---
+
+### 2. `utils.makeSitemap(lookupPatterns, ignorePatterns, prettify, upload)`
+
+Generates a `sitemap.xml` based on the provided patterns.
+
+#### Parameters
+
+| Parameter        | Type       | Default                    | Description                                                                                     |
+|------------------|------------|----------------------------|-------------------------------------------------------------------------------------------------|
+| `lookupPatterns` | `string[]` | Configured lookup patterns | Array of file patterns to include in the sitemap.                                              |
+| `ignorePatterns` | `string[]` | Configured ignore patterns | Array of file patterns to exclude from the sitemap.                                            |
+| `prettify`       | `boolean`  | `false`                   | Whether to prettify the `sitemap.xml`.                                                         |
+| `upload`         | `boolean`  | `true`                    | Whether to upload the generated sitemap to the configured FTP server.                          |
+
+#### Returns
+
+- `Promise<string>`: A status message indicating the success or failure of the sitemap generation process.
+
+#### Example Usage
+
+```javascript
+const sitemapStatus = await hawk.utils.makeSitemap(
+  ["src/**/*.html"],
+  ["node_modules/**"],
+  true,
+  true
+);
+console.log(sitemapStatus);
+```
+
+---
+
+### 3. `utils.makeRobot()`
+
+Creates a `robots.txt` file to guide search engine crawlers.
+
+#### Returns
+
+- `string`: A status message indicating the success or failure of the `robots.txt` creation.
+
+#### Example Usage
+
+```javascript
+const robotTxtStatus = hawk.utils.makeRobot();
+console.log(robotTxtStatus);
+```
+
+---
+
+### 4. `utils.getLastRunTimeStamp()`
+
+Retrieves the timestamp of the last successful run of Hawk.js. This is used to determine which files have changed since the last run.
+
+#### Returns
+
+- `number`: The Unix timestamp of the last run.
+
+#### Example Usage
+
+```javascript
+const lastRunTimeStamp = hawk.utils.getLastRunTimeStamp();
+console.log("Last Run Timestamp:", lastRunTimeStamp);
+```
+
+---
+
+### 5. `utils.getUpdatedRoutesPath(lastRunTimeStamp, lookupPatterns, ignorePatterns)`
+
+Finds and returns the list of updated file paths based on the last run timestamp.
+
+#### Parameters
+
+| Parameter           | Type       | Description                                                             |
+|---------------------|------------|-------------------------------------------------------------------------|
+| `lastRunTimeStamp`  | `number`   | The Unix timestamp of the last run.                                     |
+| `lookupPatterns`    | `string[]` | Array of file patterns to include when looking for updated routes.      |
+| `ignorePatterns`    | `string[]` | Array of file patterns to exclude when looking for updated routes.      |
+
+#### Returns
+
+- `string[]`: An array of updated file paths.
+
+#### Example Usage
+
+```javascript
+const updatedRoutes = hawk.utils.getUpdatedRoutesPath(
+  lastRunTimeStamp,
+  ["src/**/*.html"],
+  ["node_modules/**"]
+);
+console.log("Updated Routes:", updatedRoutes);
+```
+
+---
+
+## Configuration Options
+
+The `Hawk` instance automatically loads configurations defined in the `hawk.config.js` file. These configurations are accessed via the `configurations` property.
+
+### Example Configuration (`hawk.config.js`)
+
+```javascript
+module.exports = {
+  lookupPatterns: ["src/**/*.html"],
+  ignorePattern: ["node_modules/**"],
+  ftpCredentials: {
+    hostname: "ftp.example.com",
+    username: "yourUsername",
+    password: "yourPassword",
+  },
+  googleServiceAccount: "./service-account.json",
+};
+```
+
+### Accessing Configuration
+
+You can access the loaded configuration via the `configurations` property:
+
+```javascript
+console.log(hawk.configurations.lookupPatterns);
+```
+
+---
+
+## Supported Strategies
+
+Refer to the CLI and strategy-specific documentation for details on each supported strategy:
+
+- [IndexNow Strategy](/docs/effective-indexing-with-hawk-js/indexnow)
+- [Google Webmaster Strategies](/docs/effective-indexing-with-hawk-js/google-webmaster)
+- [Google Indexing API (GIndex)](/docs/effective-indexing-with-hawk-js/google-job-live-media-indexing)
+
+---
+
+**Keywords:**  
+<ul className="keywords">
+  <li>Hawk.js API</li>
+  <li>sitemap generation API</li>
+  <li>SEO automation API</li>
+  <li>IndexNow API</li>
+  <li>Google Search Console API</li>
 </ul>

@@ -1,6 +1,6 @@
 <div align="center">
 
-# Hawk JS API references - Website
+# Hawk.js API references - Website
 
 ---
 

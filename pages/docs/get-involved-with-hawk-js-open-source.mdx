@@ -1,38 +1,106 @@
 ---
-title: "Hawk JS Open-Source Project: How to Get Involved"
-description: "Interested in contributing to the Hawk JS open-source project? This guide will walk you through the steps of forking the repository, creating branches, making changes, and submitting pull requests. Join our community and help enhance this powerful SEO tool."
-thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbnail.png
+title: "Hawk.js Open-Source Project: How to Get Involved"
+description: "Become a part of the Hawk.js community by contributing to this powerful SEO automation tool. Learn how to fork the repository, create branches, make meaningful changes, and submit pull requests. Help us improve Hawk.js together!"
 ---
 
-# Contributing to Hawk JS
+# Contributing to Hawk.js
 
-First off, thank you for considering contributing to HAWK JS! We welcome contributions from the community.
+Thank you for your interest in contributing to Hawk.js! Your involvement helps us make this tool more robust and impactful. Whether you're fixing a bug, adding a feature, improving documentation, or sharing ideas, every contribution is valuable.
+
+---
+
+## Contribution Guidelines
+
+Here’s how you can start contributing to Hawk.js:
+
+1. **Fork the Repository:**
+   - Navigate to the [Hawk.js GitHub repository](https://github.com/cresteem/Hawk.js).
+   - Click the **Fork** button to create a personal copy of the repository.
+
+2. **Clone Your Fork:**
+   - Clone the forked repository to your local machine using:
+     ```bash
+     git clone https://github.com/<your-username>/Hawk.js.git
+     cd Hawk.js
+     ```
+
+3. **Create a New Branch:**
+   - Use descriptive names for your branches, such as `feature/add-logging` or `bugfix/fix-typo`:
+     ```bash
+     git checkout -b <branch-name>
+     ```
+
+4. **Make Changes:**
+   - Implement your feature, fix bugs, or improve documentation. Ensure you adhere to the project’s coding standards.
+
+5. **Set Up a Local FTP Server (for Testing):**
+   - Hawk.js requires an FTP server for testing certain functionalities like sitemap uploads. You can quickly set up an FTP server using Docker:
+     ```bash
+     docker run -d -p 21:21 -p 21000-21010:21000-21010 \
+       -e USERS="user:password:1001" \
+       -e ADDRESS=0.0.0.0 \
+       delfer/alpine-ftp-server
+     ```
+   - This command creates an FTP server with a user named `user` and a password `password`. Replace them with your preferred credentials if needed.
+
+6. **Test Your Changes:**
+   - Run tests locally to verify your changes don’t break any existing functionality:
+     ```bash
+     npm run test
+     ```
+   - Ensure the FTP server is running during testing for features that require it.
+
+7. **Commit Your Changes:**
+   - Write clear, concise commit messages:
+     ```bash
+     git commit -m "Description of changes"
+     ```
+
+8. **Push to Your Fork:**
+   - Push your branch to your forked repository:
+     ```bash
+     git push origin <branch-name>
+     ```
+
+9. **Submit a Pull Request (PR):**
+   - Go to the original [Hawk.js repository](https://github.com/cresteem/Hawk.js) and open a pull request (PR).
+   - Provide a clear description of the changes in your PR, including screenshots or logs if applicable.
+
+---
+
+## Contribution Etiquette
+
+- **Code Quality:** Ensure your code is clean, readable, and adheres to the project’s coding standards. Run linters and formatters as specified in the project.
+- **Documentation:** Update relevant documentation when adding new features or making significant changes.
+- **Tests:** Include unit or integration tests for new functionality.
+- **Respect the Community:** Be polite and professional in discussions and reviews.
+
+---
+
+## Join the Discussion
+
+We encourage contributors to connect with the community. For questions, ideas, or discussions:
+
+- **Telegram Channel:** [Join us on Telegram](https://t.me/cresteem/6)  
+- **Email:** Send inquiries or feedback to [connect@cresteem.com](mailto:connect@cresteem.com)
+
+We value your input and strive to make collaboration seamless and enjoyable.
+
+---
 
 ## License Agreement
 
-By contributing to this project, you agree that your contributions will be licensed under the Apache License, Version 2.0. This means that any code or documentation you submit will be covered by the same license as the rest of the project.
+By contributing to Hawk.js, you agree that your contributions will be licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0). This ensures that all submissions remain compatible with the open-source nature of the project.
 
-## How to Contribute
+---
 
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Make your changes in the new branch.
-4. Submit a pull request to the main repository.
+## Keywords
 
-Please ensure that your contributions adhere to our coding standards and include appropriate tests.
-
-## Contact
-
-For any question kindly reach out us in [telegram channel](https://t.me/cresteem/6) or mail to us connect@cresteem.com
-
-import style from "../../stylesheets/utils.module.scss";
-
-<br />
-<br />
-<br />
-<strong>Keywords:</strong>
-<ul className={style.keywords}>
+<ul className="keywords">
   <li>Contributing guide</li>
-  <li>open-source project</li>
+  <li>Open-source project</li>
   <li>SEO tool improvement</li>
+  <li>Collaboration</li>
+  <li>GitHub contributions</li>
+  <li>Testing with FTP server</li>
 </ul>

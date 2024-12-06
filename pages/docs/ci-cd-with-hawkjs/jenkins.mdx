@@ -1,0 +1,342 @@
+# Jenkins CI/CD Integration for Hawk.js
+
+In this section, we'll outline how to integrate **Hawk.js** with Jenkins to automate your sitemap generation, submission, and indexing strategies. The workflows described here will enable you to leverage Jenkins' power for continuous integration and keep your content up to date across search engines.
+
+---
+
+## Case 1: Jenkins Workflow for `IndexNow` Strategy
+
+### Prerequisites
+
+Before setting up the Jenkins job, ensure you have the necessary configuration and secrets in place.
+
+#### Jenkins Configuration:
+
+1. **Install Node.js on Jenkins:**
+   Ensure that Node.js is installed on your Jenkins server or agent where the job will run.
+
+2. **Set up Jenkins Credentials:**
+   Store your FTP credentials securely in Jenkins:
+   - `FTP_HOST`
+   - `FTP_USERNAME`
+   - `FTP_PASSWORD`
+
+3. **Hawk.js Configuration (`hawk.config.js`):**
+   Make sure the `hawk.config.js` file is set up to reference these credentials. Example configuration:
+
+```javascript
+module.exports = {
+  ftpCredential: {
+    hostname: process.env.FTP_HOST,
+    username: process.env.FTP_USERNAME,
+    password: process.env.FTP_PASSWORD,
+  },
+};
+```
+
+#### Jenkins Pipeline File (`Jenkinsfile`)
+
+The following Jenkins pipeline will:
+- Install dependencies.
+- Run Hawk.js with the **IndexNow strategy** to notify search engines about updates to your website content.
+
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        FTP_HOST = credentials('ftp_host')
+        FTP_USERNAME = credentials('ftp_username')
+        FTP_PASSWORD = credentials('ftp_password')
+    }
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Install Node.js and Hawk.js
+                    sh 'npm install -g @cresteem/hawk-js'
+                }
+            }
+        }
+
+        stage('Run Hawk.js with IndexNow') {
+            steps {
+                script {
+                    // Run Hawk.js with IndexNow strategy
+                    sh 'npx hawk --strategy 1'
+                }
+            }
+        }
+
+        stage('Generate and Upload Sitemap') {
+            steps {
+                script {
+                    // Generate sitemap and upload to FTP server
+                    sh 'npx hawk genmap -i "src/**/*.html" -c'
+                }
+            }
+        }
+    }
+}
+```
+
+### Breakdown of the Jenkins Pipeline:
+
+1. **Install Dependencies:**  
+   Installs Hawk.js globally using npm.
+
+2. **Run Hawk.js with IndexNow Strategy:**  
+   The pipeline triggers Hawk.js with the `--strategy 1` flag to send notifications about updates to search engines using the **IndexNow** strategy.
+
+3. **Generate and Upload Sitemap:**  
+   Generates the sitemap and uploads it to the FTP server using the `-c` flag to send the generated sitemap to the specified FTP host.
+
+---
+
+## Case 2: Jenkins Workflow for `GWebMaster` & `GWebMaster2` Strategy
+
+### Prerequisites
+
+1. **Set Up Google Service Account:**
+   Ensure you have a valid **Google Service Account** (`gserv.json`) to authenticate with Google Search Console.
+
+2. **Jenkins Credentials:**
+   Add the following Jenkins credentials:
+   - `FTP_HOST`, `FTP_USERNAME`, `FTP_PASSWORD`
+   - `GOOGLE_SERVICE_ACCOUNT_JSON` (stored as a file or environment variable)
+
+### Jenkins Pipeline File (`Jenkinsfile`)
+
+This pipeline will:
+- Set up the environment.
+- Use **Google Webmaster (GWebMaster & GWebMaster2)** strategies to notify Google about updates.
+
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        FTP_HOST = credentials('ftp_host')
+        FTP_USERNAME = credentials('ftp_username')
+        FTP_PASSWORD = credentials('ftp_password')
+        GOOGLE_SERVICE_ACCOUNT_JSON = credentials('google_service_account_json')
+    }
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Install Node.js and Hawk.js
+                    sh 'npm install -g @cresteem/hawk-js'
+                }
+            }
+        }
+
+        stage('Set up Google Service Account') {
+            steps {
+                script {
+                    // Set up Google Service Account
+                    writeFile(file: 'gserv.json', text: "${GOOGLE_SERVICE_ACCOUNT_JSON}")
+                }
+            }
+        }
+
+        stage('Run Hawk.js with Google Webmaster') {
+            steps {
+                script {
+                    // Run Hawk.js with Google Webmaster strategy
+                    sh 'npx hawk --strategy 2'
+                }
+            }
+        }
+
+        stage('Generate and Upload Sitemap') {
+            steps {
+                script {
+                    // Generate sitemap and upload to FTP server
+                    sh 'npx hawk genmap -i "src/**/*.html" -c'
+                }
+            }
+        }
+    }
+}
+```
+
+### Breakdown of the Jenkins Pipeline:
+
+1. **Install Dependencies:**  
+   This step installs Node.js and Hawk.js.
+
+2. **Set up Google Service Account:**  
+   The pipeline creates the `gserv.json` file from the Google Service Account credentials stored in Jenkins secrets.
+
+3. **Run Hawk.js with Google Webmaster Strategy:**  
+   It runs Hawk.js with the `--strategy 2` flag to submit the sitemap to Google Search Console.
+
+4. **Generate and Upload Sitemap:**  
+   The pipeline generates the sitemap and uploads it to the FTP server using the `-c` flag.
+
+---
+
+## Case 3: Jenkins Workflow for `G-Index` Strategy
+
+### Prerequisites
+
+Before you can run this workflow, ensure you have a **Google Service Account** configured for the Google Index API.
+
+1. **Jenkins Credentials:**
+   Add the `GOOGLE_SERVICE_ACCOUNT_JSON` credential.
+
+2. **Hawk.js Configuration (`hawk.config.js`):**
+   Example:
+
+```javascript
+module.exports = {
+  serviceAccountFile: 'gserv.json',  // Path to Google service account file
+};
+```
+
+### Jenkins Pipeline File (`Jenkinsfile`)
+
+This pipeline will:
+- Set up the environment.
+- Use the **G-Index strategy** to notify Google about updates to your content.
+
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        GOOGLE_SERVICE_ACCOUNT_JSON = credentials('google_service_account_json')
+    }
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Install Node.js and Hawk.js
+                    sh 'npm install -g @cresteem/hawk-js'
+                }
+            }
+        }
+
+        stage('Set up Google Service Account') {
+            steps {
+                script {
+                    // Set up Google Service Account
+                    writeFile(file: 'gserv.json', text: "${GOOGLE_SERVICE_ACCOUNT_JSON}")
+                }
+            }
+        }
+
+        stage('Run Hawk.js with G-Index') {
+            steps {
+                script {
+                    // Run Hawk.js with G-Index strategy
+                    sh 'npx hawk --strategy 4'
+                }
+            }
+        }
+
+        stage('Generate and Upload Sitemap') {
+            steps {
+                script {
+                    // Generate sitemap and upload to FTP server
+                    sh 'npx hawk genmap -i "src/**/*.html" -c'
+                }
+            }
+        }
+    }
+}
+```
+
+### Breakdown of the Jenkins Pipeline:
+
+1. **Install Dependencies:**  
+   Installs Node.js and Hawk.js.
+
+2. **Set up Google Service Account:**  
+   This step retrieves the Google Service Account credentials from Jenkins secrets and creates the `gserv.json` file.
+
+3. **Run Hawk.js with G-Index Strategy:**  
+   The `npx hawk --strategy 4` command triggers the **G-Index strategy**, sending updates to Google Search Console.
+
+4. **Generate and Upload Sitemap:**  
+   This step generates the sitemap and uploads it to an FTP server.
+
+---
+
+## Case 4: Jenkins Workflow for Generating Sitemap
+
+For a simpler case where you only need to generate the sitemap and optionally upload it to an FTP server, the following Jenkins pipeline will handle that.
+
+### Jenkins Pipeline File (`Jenkinsfile`)
+
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        FTP_HOST = credentials('ftp_host')
+        FTP_USERNAME = credentials('ftp_username')
+        FTP_PASSWORD = credentials('ftp_password')
+    }
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Install Node.js and Hawk.js
+                    sh 'npm install -g @cresteem/hawk-js'
+                }
+            }
+        }
+
+        stage('Generate Sitemap') {
+            steps {
+                script {
+                    // Generate the sitemap (without upload)
+                    sh 'npx hawk genmap -i "src/**/*.html" -e "node_modules/**"'
+                }
+            }
+        }
+
+        stage('Generate and Upload Sitemap') {
+            steps {
+                script {
+                    // Generate and upload the sitemap
+                    sh 'npx hawk genmap -i "src/**/*.html" -c'
+                }
+            }
+        }
+    }
+}
+```
+
+### Breakdown of the Jenkins Pipeline:
+
+1. **Install Dependencies:**  
+   This step installs Hawk.js globally.
+
+2. **Generate Sitemap:**  
+   Generates the sitemap without uploading it, using the `-e` flag to exclude specific directories.
+
+3. **Generate and Upload Sitemap (Optional):**  
+   Generates the sitemap and uploads it to the FTP server, using the `-c` flag to perform the upload.
+
+---
+
+### Final Notes
+
+- **FTP Credentials:**  
+   Ensure your FTP credentials are securely stored in Jenkins credentials and referenced in the pipeline.
+
+- **Google Service Account:**  
+   For workflows involving Google Search Console or Google Index API, ensure your Google Service Account is correctly set up and stored in Jenkins secrets.
+
+---
+
+### Next Steps:
+
+- If you're using **[GitHub Actions](/docs/ci-cd-with-hawkjs/github-action)** or **[GitLab CI](/docs/ci-cd-with-hawkjs/gitlab-ci)**, refer to the respective sections for platform-specific workflows.

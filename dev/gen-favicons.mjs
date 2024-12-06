@@ -75,7 +75,7 @@ export async function generateFavicons({
 
 generateFavicons({
   metaDesc:
-    "Hawk JS is the ultimate tool for web developers and SEO enthusiasts. Find out how it can automates your SEO process by effortlessly submitting your sitemap, ensuring search engines like Google, Bing, Yahoo, DuckDuckGo, Yandex, Naver, Seznam.cz, and Yep stay updated with your latest content.",
+    "Hawk.js is the ultimate tool for web developers and SEO enthusiasts. Find out how it can automates your SEO process by effortlessly submitting your sitemap, ensuring search engines like Google, Bing, Yahoo, DuckDuckGo, Yandex, Naver, Seznam.cz, and Yep stay updated with your latest content.",
   version: "1.5.1",
   appName: "Hawk.js Documentation",
 });

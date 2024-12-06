@@ -1,0 +1,110 @@
+---
+title: "Using Google Webmaster API (GWebMaster & GWebMaster2) with Hawk.js"
+description: "Learn how to use Google Webmaster tools (GWebMaster and GWebMaster2) with Hawk.js for automated sitemap submission, feedback tracking, and effective website indexing. Understand the differences between GWebMaster and GWebMaster2, and how to set them up."
+---
+
+
+# GWebMaster & GWebMaster2 with Hawk.js
+
+
+Google provides a single API endpoint for webmasters through the **[Google Webmaster API](https://developers.google.com/webmaster-tools/about)**. Hawk.js integrates with this API, handling it in two different ways: **GWebMaster** and **GWebMaster2**. While both use the same API endpoint, Hawk.js manages them with different parameters, enabling automated sitemap submissions for **Google Search Console** and providing enhanced feedback tracking with **GWebMaster2**.
+
+
+## How Google Webmaster (GWebMaster & GWebMaster2) Work with Hawk.js
+
+Hawk.js supports both **GWebMaster** and **GWebMaster2** strategies for submitting sitemaps to Google and managing your site's presence in search results. Both strategies follow a similar process, but there are key differences, particularly in how they handle feedback from Google Search Console.
+
+### 1. **GWebMaster (Google Webmaster) Strategy**
+The **GWebMaster** strategy in Hawk.js focuses on generating and submitting a sitemap to **Google Search Console**. This ensures that Google crawls and indexes your content. Here's how it works:
+
+- **Sitemap Generation:** Hawk.js generates the sitemap by looking for files based on the patterns you define in your configuration (e.g., `**/*.html`, `**/*.htm`). It then creates a route inside the sitemap.
+  
+- **FTP Submission:** Once the sitemap is generated, it is uploaded to your FTP server, where Google can access and crawl the file.
+
+- **Indexing Process:** Submit `sitemap.xml` link to Google search console, so Google will access it and begin crawling your site. This process ensures that new or updated content gets indexed quickly, improving your SEO.
+
+**Requirements:** To use the GWebMaster strategy, you must have the **Google Service Account File** (`gserv.json`) and **FTP credentials** configured. The service account file allows Hawk.js to communicate with Google Search Console, while FTP credentials ensure that the sitemap can be uploaded to your server.
+
+---
+
+### 2. **GWebMaster2 (Google Webmaster 2) Strategy**
+The **GWebMaster2** strategy enhances the basic functionality of **GWebMaster** by allowing Hawk.js to interact with Google Search Console and receive feedback on how well your site is indexed. This includes details like how many pages are identified, the last crawl date, and any issues found during the crawl. Here's what is addition in GWebMaster2:
+
+- **Feedback and Status Monitoring:** The key difference with **GWebMaster2** is that it also fetches feedback from Google Search Console. It allows Hawk.js to retrieve data such as:
+  - **Number of pages indexed**: How many of your submitted pages have been indexed by Google.
+  - **Last read timestamp**: When Google last crawled your site.
+  - **Crawl errors**: Any issues encountered while crawling the site, which could impact your site's visibility.
+
+---
+
+## Key Differences Between GWebMaster and GWebMaster2
+
+| Feature                       | **GWebMaster**                             | **GWebMaster2**                               |
+|-------------------------------|--------------------------------------------|----------------------------------------------|
+| **Sitemap Generation**         | Yes, generates and submits sitemap         | Yes, generates and submits sitemap           |
+| **FTP Submission**             | Yes, submits sitemap to FTP server         | Yes, submits sitemap to FTP server           |
+| **Feedback from Google**       | No feedback retrieval from Google          | Yes, retrieves indexing feedback (e.g., number of pages indexed, crawl errors) |
+
+---
+
+## Requirements for Using Google Webmaster (GWebMaster & GWebMaster2)
+
+- **FTP Credentials:** These are required for both **GWebMaster** and **GWebMaster2** strategies. Without FTP credentials, Hawk.js will not be able to upload the sitemap to your server for Google to crawl.
+- **Google Service Account File:** This file is essential for authenticating Hawk.js with Google Search Console. It’s required for both **GWebMaster** and **GWebMaster2** strategies.
+
+---
+
+## How to Use Google Webmaster with Hawk.js
+
+1. **Generate Google Service Account File:**
+   - Follow the instructions on our [Google Credentials](/docs/credentials/obtaining-google-credentials-for-hawk-js) page to obtain a **Google Service Account File** (`gserv.json`).
+  
+2. **Configure Hawk.js with Service Account and FTP Credentials:**
+   - Add the service account file and FTP credentials to your `hawk.config.js`:
+
+     ```js
+     serviceAccountFile: "gserv.json",
+     ftpCredential: { 
+       username: "your-ftp-username", 
+       password: "your-ftp-password", 
+       hostname: "your-ftp-hostname" 
+     }
+     ```
+
+3. **Run Hawk.js with GWebMaster or GWebMaster2 Strategy:**
+   - To trigger the **GWebMaster** strategy, use:
+
+     ```bash
+     hawk --strategy 2
+     ```
+
+   - To trigger the **GWebMaster2** strategy, use:
+
+     ```bash
+     hawk --strategy 3
+     ```
+
+4. **Monitor Submission and Indexing Status:**
+   - After submission, check your **Google Search Console** for updates on indexing and crawl status. You can use **GWebMaster2** to get detailed feedback on how many pages were indexed and if any crawl errors occurred.
+
+---
+
+## Benefits of Using Google Webmaster API with Hawk.js
+
+- **Automated Sitemap Submission:** Automatically generate and submit your sitemap to Google Search Console without manual intervention.
+- **Faster Indexing:** Ensure that your content is indexed quickly and efficiently, improving your site’s SEO performance.
+- **Crawl Feedback:** **GWebMaster2** provides detailed feedback on your site’s indexing status, helping you monitor and resolve crawl issues.
+- **Error Monitoring:** Track and resolve crawl errors with **GWebMaster2** to improve your site's visibility in Google search results.
+
+---
+
+**Keywords:**
+<ul className="keywords">
+  <li>Google Webmaster API</li>
+  <li>GWebMaster</li>
+  <li>GWebMaster2</li>
+  <li>Google Search Console</li>
+  <li>Sitemap Submission</li>
+  <li>SEO Automation</li>
+  <li>Indexing Feedback</li>
+</ul>

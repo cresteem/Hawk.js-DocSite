@@ -1,45 +1,107 @@
 ---
-title: "Getting Started with Hawk JS: A Step-by-Step Guide"
-description: "Discover the simple installation process of Hawk JS, a powerful tool for enhancing your website's SEO. This guide will ensure you have everything you need to set up Hawk JS and improve your site's visibility."
-thumbnailUrl: https://cresteem.com/opensource/enhancing-seo-with-hawk-js/thumbnail.png
+title: "Getting Started with Hawk.js: A Step-by-Step Guide"
+description: "Discover the simple installation process of Hawk.js, a powerful tool for enhancing your website's SEO. This guide will ensure you have everything you need to set up Hawk.js and improve your site's visibility."
 ---
+
 
 # Getting Started
 
 ## Prerequisite
 
-To use **Hawk JS**, you will need the following prerequisites:
+To use **Hawk.js**, you will need the following prerequisites:
 
 - **Node.js (v18.0 or later)** installed on your system. You can download it from
   [https://nodejs.org/en/download](https://nodejs.org/en/download).
-- **NPM** (Node Package Manager) or **YARN** should be installed along with Node.js.
-- **Internet** to install Hawk JS from npm registry.
+- **Internet** to install Hawk.js from the npm registry.
 
-Once you have these prerequisites in place, you can follow the installation steps in the project's documentation
-to set up and run the project on your local machine.
+Once you have these prerequisites in place, you can follow the installation steps in the project's documentation to set up and run Hawk.js.
 
-## Installation
 
-```sh npm2yarn
-npm install -D @cresteem/hawk-js
-```
+import { Steps ,Tabs} from "nextra/components";
 
-<br />
-<br />
-<br />
-You are almost ready to use Hawk JS. Next, we will explore the available strategies
-and learn how to configure Hawk JS for your own projects.
-<br />
-<b>Let's see strategies first!</b>
+Ready to start improving your SEO with Hawk.js? Here’s how:
 
-import style from "../../stylesheets/utils.module.scss";
+<Steps>
+  ### Installation 
+  Install Hawk.js using your favourite package manager
+ <Tabs items={['yarn','npm']}>
+    <Tabs.Tab>
+    ```bash copy filename="YARN @ Bash ~ CMD"
+    yarn add @cresteem/hawk-js -D
+    ```
+    </Tabs.Tab>
 
-<br />
-<br />
-<br />
-<strong>Keywords:</strong>
-<ul className={style.keywords}>
+    <Tabs.Tab>
+        
+    ```bash copy filename="NPX @ Bash ~ CMD"
+    npm install @cresteem/hawk-js -D
+    ```
+    </Tabs.Tab>
+
+</Tabs>
+  
+  ### Initiate the Configuration File
+  
+  Use the following command to create a default configuration file:
+  ```bash
+  hawk init
+  ```
+  This will generate a `hawk.config.js` file in your project directory.
+  
+
+  ### Customize Your Configuration
+    - Open the newly created `hawk.config.js` file. 
+    - Define the patterns you wish to include and exclude.
+    - Customize additional settings as per your requirements.
+
+Learn more in the [Configurations](/docs/hawk-js-configuration-settings-guide)
+
+
+  ### Credentials
+
+For certain indexing strategies, you'll need to provide specific credentials. 
+
+- **For `G-Webmaster`, `G-Webmaster2`, and `G-Index` strategies**, you will need your **Google Webmaster Tools credentials**.
+- **For the `IndexNow` strategy**, FTP credentials are sufficient for the submission process.
+
+Be sure to input these credentials in the configuration file as per the requirements for the strategy you are using.
+
+Learn more in the [Google Credentials](/docs/credentials/obtaining-google-credentials-for-hawk-js) and [FTP Credentials](/docs/credentials/ftp-credentials).
+
+### Run the CLI
+
+To run Hawk.js with a specific strategy, use the command `hawk --strategy <number>`, where `<number>` is:
+
+- `1` for `Index-Now` 
+- `2` for `G-Webmaster`
+- `3` for `G-Webmaster2`
+- `4` for `G-Index`
+  
+Along with optional parameters like `--include`, `--exclude`, and `--prettify`.
+
+Learn more in the [CLI References](/docs/enhancing-seo-with-hawk-js-cli).
+
+</Steps>
+
+## What's Next?
+
+Now that you have Hawk.js set up and ready to go, the next step is to configure it to suit your project needs. 
+
+Head over to the [Configuration Details](/docs/hawk-js-configuration-settings-guide) page to learn how to:
+
+- Customize your `hawk.config.js` file.
+- Define the URLs to include or exclude from the sitemap.
+
+This will ensure Hawk.js runs optimally for your website and automates your SEO process as per your preferences.
+
+---
+
+**Keywords:**
+<ul className="keywords" >
   <li>SEO tool setup</li>
   <li>environment configuration</li>
   <li>web development</li>
+  <li>IndexNow</li>
+  <li>Google Webmaster Tools</li>
 </ul>
+

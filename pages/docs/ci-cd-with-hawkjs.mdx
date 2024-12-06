@@ -1,0 +1,29 @@
+
+
+# Continuous Integration with Hawk.js
+
+Hawk.js integrates seamlessly into your CI/CD pipelines on platforms like **GitHub Actions**, **GitLab CI**, and **Jenkins**, enabling automated sitemap generation and search engine submission during your deployment process.
+
+### What Does Hawk.js Do in CI/CD?
+
+1. **Build Your Website**: Generate the deployable version of your site (e.g., static site generators, Next.js apps).
+2. **Generate Sitemaps**: Create `sitemap.xml` and `robots.txt` using Hawk.js.  
+3. **Trigger Search Engines**: Notify search engines using these strategies:
+   - **IndexNow**: For Bing, Yahoo, Yandex, and other IndexNow-compatible engines.  
+   - **Google Webmaster API**: Submit and manage sitemaps via Google Search Console.  
+   - **Google Indexing API**: Notify Google about job postings or live stream updates.
+4. **Optional**: Generate sitemaps only, without triggering search engines.
+
+### Platform-Specific Workflows
+While each CI/CD platform uses different syntax, the core operations are identical.  
+- **[GitHub Actions](/docs/ci-cd-with-hawkjs/github-action)**: Workflow examples for integrating Hawk.js in GitHub repositories.  
+- **[GitLab CI](/docs/ci-cd-with-hawkjs/gitlab-ci)**: Pipeline definitions tailored for GitLab environments.  
+- **[Jenkins](/docs/ci-cd-with-hawkjs/jenkins)**: Flexible pipeline scripts for various deployment scenarios.
+
+Each page provides **four customizable workflows**:
+1. **IndexNow Strategy**: Notify IndexNow-compatible engines.  
+2. **Google Webmaster**: Upload sitemaps to Google Search Console.  
+3. **Google Indexing API**: Directly notify Google about page updates.  
+4. **Sitemap Generation Only**: Generate the sitemap without triggering submissions.
+
+Explore platform-specific pages for detailed workflow templates and step-by-step guidance.
