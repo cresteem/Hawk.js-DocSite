@@ -1,6 +1,6 @@
 export default {
   index: {
-    title: "",
+    title: "Sponsor",
     theme: {
       layout: "raw",
     },

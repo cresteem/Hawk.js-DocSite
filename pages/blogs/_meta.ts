@@ -1,6 +1,6 @@
 export default {
   index: {
-    title: "",
+    title: "Blogs",
     theme: {
       layout: "raw",
     },
