@@ -35,7 +35,7 @@ const config = {
 
   docsRepositoryBase: "https://github.com/cresteem/Hawk.js-DocSite/tree/main",
 
-  nextThemes: { defaultTheme: "Light" },
+  nextThemes: { defaultTheme: "light" },
   sidebar: {
     toggleButton: true,
   },
